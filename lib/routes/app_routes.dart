@@ -1,6 +1,7 @@
 import 'package:dfvue/View/InitialScreen/initialScreen.dart';
 import 'package:dfvue/View/LogIn/logInScreen.dart';
 import 'package:dfvue/View/SignUp/sign_up_screen.dart';
+import 'package:dfvue/View/StartScreen/start_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -113,11 +114,11 @@ class AppRoutes {
       //   builder: (BuildContext context, GoRouterState state) =>
       //   const MicrophoneScreen(),
       // ),
-      // GoRoute(
-      //   path: startScreen,
-      //   builder: (BuildContext context, GoRouterState state) =>
-      //   const StartScreen(),
-      // ),
+      GoRoute(
+        path: startScreen,
+        builder: (BuildContext context, GoRouterState state) =>
+            const StartScreen(),
+      ),
       // GoRoute(
       //   path: voiceRecognitionScreen,
       //   builder: (BuildContext context, GoRouterState state) =>
