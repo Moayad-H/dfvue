@@ -118,6 +118,7 @@ class LogInScreen extends StatelessWidget {
                                         right: 5.h,
                                       ),
                                       child: CustomTextFormField(
+                                        autofocus: false,
                                         controller: TextEditingController(),
                                         hintText: "Enter Your Name",
                                         alignment: Alignment.center,
@@ -152,6 +153,7 @@ class LogInScreen extends StatelessWidget {
                                       right: 5.h,
                                     ),
                                     child: CustomTextFormField(
+                                      autofocus: false,
                                       controller: TextEditingController(),
                                       hintText: "Enter Your Password",
                                       textInputAction: TextInputAction.done,
@@ -340,21 +342,21 @@ class LogInScreen extends StatelessWidget {
 
   /// Navigates to the resetPasswordScreen when the action is triggered.
   onTapTxtForgetPassword(BuildContext context) {
-    GoRouter.of(context).go(
+    GoRouter.of(context).push(
       AppRoutes.resetPasswordScreen,
     );
   }
 
   /// Navigates to the startScreen when the action is triggered.
   onTapImgCdddfOne(BuildContext context) {
-    GoRouter.of(context).go(
+    GoRouter.of(context).push(
       AppRoutes.startScreen,
     );
   }
 
   /// Navigates to the signUpScreen when the action is triggered.
   onTapTxtSignUp(BuildContext context) {
-    GoRouter.of(context).go(
+    GoRouter.of(context).push(
       AppRoutes.signUpScreen,
     );
   }

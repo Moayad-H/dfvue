@@ -1,4 +1,5 @@
 import 'package:dfvue/Providers/theme_provider.dart';
+import 'package:dfvue/Providers/voice_recognition_provider.dart';
 import 'package:dfvue/app_export.dart';
 import 'package:dfvue/localization/app_localization.dart';
 import 'package:flutter/material.dart';
@@ -13,9 +14,13 @@ void main() async {
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   final themeProvider = ThemeProvider(ThemeData.light());
   await themeProvider.loadThemeFromPrefs();
+
   runApp(
-    ChangeNotifierProvider<ThemeProvider>(
-      create: (_) => themeProvider,
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => VoiceRecognitionProvider()),
+        ChangeNotifierProvider(create: (_) => themeProvider),
+      ],
       child: const MyApp(),
     ),
   );
