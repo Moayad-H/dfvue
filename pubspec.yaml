@@ -30,16 +30,27 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
-
+ # flutter_bloc: ^8.1.3
+ # connectivity_plus: ^6.0.2
+  shared_preferences: ^2.2.2
+  cached_network_image: ^3.3.0
+  flutter_svg: ^2.0.9
+ # equatable: ^2.0.5
+  pin_code_fields: ^8.0.1
+ # sms_autofill: ^2.0.0
+  go_router: ^14.1.1
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  provider: ^6.1.2
+  flutter_localizations:
+    sdk: flutter
+  intl: null
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
@@ -52,6 +63,35 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  generate: true
+  assets: 
+    - assets/
+    - assets/images/
+  fonts: 
+    - family: Inter
+      fonts: 
+        - asset: assets/fonts/InterRegular.ttf
+          weight: 400
+    - family: Poppins
+      fonts: 
+        - asset: assets/fonts/PoppinsBold.ttf
+          weight: 700
+        - asset: assets/fonts/PoppinsRegular.ttf
+          weight: 400
+        - asset: assets/fonts/PoppinsMedium.ttf
+          weight: 500
+        - asset: assets/fonts/PoppinsLight.ttf
+          weight: 300
+    - family: Outfit
+      fonts: 
+        - asset: assets/fonts/OutfitSemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/OutfitRegular.ttf
+          weight: 400
+    - family: Mulish
+      fonts: 
+        - asset: assets/fonts/MulishRomanSemiBold.ttf
+          weight: 600
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
