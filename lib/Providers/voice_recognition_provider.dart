@@ -1,4 +1,6 @@
+import 'dart:convert';
 import 'dart:io';
+import 'package:dfvue/models/transcriptionModel.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -7,15 +9,17 @@ class VoiceRecognitionProvider extends ChangeNotifier {
   late stt.SpeechToText speech;
   bool isListening = false;
   String _currentText = 'Press the button and start speaking';
-  List<String> _textList = [];
+  List<TranscriptionModel> _textList = [];
+  String _saveStatusMessage = '';
 
   VoiceRecognitionProvider() {
     speech = stt.SpeechToText();
-    _readFromFile();
+    readFromFile();
   }
 
   String get currentText => _currentText;
-  List<String> get textList => _textList;
+  List<TranscriptionModel> get textList => _textList;
+  String get saveStatusMessage => _saveStatusMessage;
 
   void listen() async {
     if (!isListening) {
@@ -40,38 +44,69 @@ class VoiceRecognitionProvider extends ChangeNotifier {
     }
   }
 
-  Future<void> saveToFile(context) async {
-    final directory = await getApplicationDocumentsDirectory();
-    final path = '${directory.path}/transcription.txt';
-    final file = File(path);
-
-    // Append the new text to the file
-    await file.writeAsString('$_currentText\n', mode: FileMode.append);
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-      content: Text('Saved to $path'),
-    ));
-    // Re-read the file to update the displayed list
-    await _readFromFile();
-  }
-
-  Future<void> _readFromFile() async {
+  Future<void> saveToFile() async {
     try {
       final directory = await getApplicationDocumentsDirectory();
-      final path = '${directory.path}/transcription.txt';
+      final path = '${directory.path}/transcriptionJson2.txt';
+      final file = File(path);
+
+      final transcription = TranscriptionModel(
+        text: _currentText,
+        timestamp: DateTime.now(),
+      );
+
+      await file.writeAsString('${jsonEncode(transcription.toJson())}\n',
+          mode: FileMode.append);
+      _saveStatusMessage = 'Transcription saved successfully!';
+      //_currentText = 'Press the button and start speaking';
+      await readFromFile();
+    } catch (e) {
+      _saveStatusMessage = 'Failed to save transcription: $e';
+    }
+    notifyListeners();
+  }
+
+  Future<void> readFromFile() async {
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      final path = '${directory.path}/transcriptionJson2.txt';
       final file = File(path);
 
       if (await file.exists()) {
         String fileContent = await file.readAsString();
-        List<String> lines =
-            fileContent.split('\n').where((line) => line.isNotEmpty).toList();
-        _textList = lines;
+        List<TranscriptionModel> transcriptions = fileContent
+            .split('\n')
+            .where((line) => line.isNotEmpty)
+            .map((line) => TranscriptionModel.fromJson(jsonDecode(line)))
+            .toList();
+        _textList = transcriptions;
       } else {
         _textList = [];
       }
-      notifyListeners();
     } catch (e) {
       print('Failed to read the file: $e');
     }
+    notifyListeners();
+  }
+
+  Future<void> deleteTranscription(int index) async {
+    try {
+      final directory = await getApplicationDocumentsDirectory();
+      final path = '${directory.path}/transcriptionJson2.txt';
+      final file = File(path);
+
+      _textList.removeAt(index);
+
+      // Rewrite the file with the updated list
+      await file.writeAsString(
+        '${_textList.map((transcription) => jsonEncode(transcription.toJson())).join('\n')}\n',
+        mode: FileMode.write,
+      );
+      _saveStatusMessage = 'Transcription deleted successfully!';
+    } catch (e) {
+      _saveStatusMessage = 'Failed to delete transcription: $e';
+    }
+    notifyListeners();
   }
 
   void clearCurrentText() {

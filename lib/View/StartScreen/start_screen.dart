@@ -140,7 +140,7 @@ class StartScreen extends StatelessWidget {
   /// Navigates to the templatesScreen when the action is triggered.
   onTapImgNnnjOne(BuildContext context) {
     GoRouter.of(context).push(
-      AppRoutes.templatesScreen,
+      AppRoutes.transcriptionScreen,
     );
   }
 

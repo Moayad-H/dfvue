@@ -7,23 +7,8 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
-class VoiceRecognitionScreen extends StatefulWidget {
+class VoiceRecognitionScreen extends StatelessWidget {
   const VoiceRecognitionScreen({super.key});
-
-  @override
-  State<VoiceRecognitionScreen> createState() => _VoiceRecognitionScreenState();
-}
-
-class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
-  late stt.SpeechToText _speech;
-  bool _isListening = false;
-  String text = 'Press the button and start speaking';
-
-  @override
-  void initState() {
-    super.initState();
-    _speech = stt.SpeechToText();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,8 +117,16 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                                     mainAxisAlignment: MainAxisAlignment.center,
                                     children: [
                                       IconButton(
-                                        onPressed: () async =>
-                                            provider.saveToFile(context),
+                                        onPressed: () async {
+                                          await provider.saveToFile();
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(
+                                              content: Text(
+                                                  provider.saveStatusMessage),
+                                            ),
+                                          );
+                                        },
                                         icon: const Icon(Icons.save_alt),
                                         iconSize: 40,
                                       ),
