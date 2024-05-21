@@ -82,7 +82,9 @@ class StartScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 10.v),
                   GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      onTapThirtyNine(context);
+                    },
                     child: Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: 63.h,
@@ -132,19 +134,19 @@ class StartScreen extends StatelessWidget {
 
   /// Navigates to the voiceRecognitionScreen when the action is triggered.
   onTapThirtyNine(BuildContext context) {
-    GoRouter.of(context).go(AppRoutes.voiceRecognitionScreen);
+    GoRouter.of(context).push(AppRoutes.voiceRecognitionScreen);
   }
 
   /// Navigates to the templatesScreen when the action is triggered.
   onTapImgNnnjOne(BuildContext context) {
-    GoRouter.of(context).go(
+    GoRouter.of(context).push(
       AppRoutes.templatesScreen,
     );
   }
 
   /// Navigates to the profileEditScreen when the action is triggered.
   onTapImgPp(BuildContext context) {
-    GoRouter.of(context).go(
+    GoRouter.of(context).push(
       AppRoutes.profileEditScreen,
     );
   }

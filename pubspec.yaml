@@ -46,6 +46,9 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: null
+  speech_to_text: ^6.6.1
+  highlight_text: ^1.7.0
+  avatar_glow: ^3.0.1
 
 dev_dependencies:
   flutter_test:

@@ -379,14 +379,14 @@ class SignUpScreen extends StatelessWidget {
 
   /// Navigates to the otpVerifcationScreen when the action is triggered.
   onTapBtnIconButton(BuildContext context) {
-    GoRouter.of(context).go(
+    GoRouter.of(context).push(
       AppRoutes.otpVerifcationScreen,
     );
   }
 
   /// Navigates to the logInScreen when the action is triggered.
   onTapTxtLogin(BuildContext context) {
-    GoRouter.of(context).go(
+    GoRouter.of(context).push(
       AppRoutes.logInScreen,
     );
   }
