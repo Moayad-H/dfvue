@@ -177,10 +177,19 @@ class _LanguageScreenState extends State<LanguageScreen> {
                       iconSize: 30,
                       onPressed: GoRouter.of(context).pop,
                       icon: Icon(Icons.arrow_back)),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
                   Container(
                     alignment: Alignment.center,
                     child: CustomImageView(
-                      height: 200.h,
+                      height: 100.h,
                       width: 300.v,
                       color: Colors.white,
                       imagePath: ImageConstant.imgDfVue61,
@@ -188,6 +197,9 @@ class _LanguageScreenState extends State<LanguageScreen> {
                   ),
                 ],
               ),
+            ),
+            SizedBox(
+              height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
