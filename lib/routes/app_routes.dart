@@ -1,4 +1,5 @@
 import 'package:dfvue/View/InitialScreen/initialScreen.dart';
+import 'package:dfvue/View/LanguageScreen/languageScreen.dart';
 import 'package:dfvue/View/LogIn/logInScreen.dart';
 import 'package:dfvue/View/SavedConvo/transcriptionScreen.dart';
 import 'package:dfvue/View/SignUp/sign_up_screen.dart';
@@ -106,11 +107,11 @@ class AppRoutes {
       //   builder: (BuildContext context, GoRouterState state) =>
       //   const CheckEmailsScreen(),
       // ),
-      // GoRoute(
-      //   path: languageScreen,
-      //   builder: (BuildContext context, GoRouterState state) =>
-      //   const LanguageScreen(),
-      // ),
+      GoRoute(
+        path: languageScreen,
+        builder: (BuildContext context, GoRouterState state) =>
+            const LanguageScreen(),
+      ),
       // GoRoute(
       //   path: microphoneScreen,
       //   builder: (BuildContext context, GoRouterState state) =>

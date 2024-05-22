@@ -52,6 +52,8 @@ class InitialScreen extends StatelessWidget {
                     width: 212,
                     text: "Log In",
                     buttonStyle: CustomButtonStyles.outlineLime,
+                    buttonTextStyle:
+                        const TextStyle(color: Colors.black, fontSize: 20),
                     onPressed: () {
                       GoRouter.of(context).push(AppRoutes.logInScreen);
                       log('Navigated to Log In Screen');
@@ -64,7 +66,8 @@ class InitialScreen extends StatelessWidget {
                       text: "Sign Up",
                       buttonStyle:
                           CustomButtonStyles.outlineErrorContainerTL101,
-                      buttonTextStyle: CustomTextStyles.titleLargeWhiteA700,
+                      buttonTextStyle:
+                          const TextStyle(color: Colors.white, fontSize: 20),
                       onPressed: () {
                         log('Navigated to Sign Up Screen');
                         GoRouter.of(context).push(AppRoutes.signUpScreen);

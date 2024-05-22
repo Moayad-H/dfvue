@@ -350,7 +350,7 @@ class LogInScreen extends StatelessWidget {
   /// Navigates to the startScreen when the action is triggered.
   onTapImgCdddfOne(BuildContext context) {
     GoRouter.of(context).push(
-      AppRoutes.startScreen,
+      AppRoutes.languageScreen,
     );
   }
 

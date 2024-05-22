@@ -146,7 +146,7 @@ class CustomTextStyles {
       );
   static get titleLargeWhiteA700 =>
       theme.themeData.textTheme.titleLarge!.copyWith(
-        color: appTheme.whiteA700,
+        color: Colors.white,
       );
   static get titleMediumGray5002 =>
       theme.themeData.textTheme.titleMedium!.copyWith(
