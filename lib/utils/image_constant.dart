@@ -1,6 +1,7 @@
 class ImageConstant {
   // Image folder path
   static String imagePath = 'assets/images';
+  static String iconPath = 'assets/icons';
 
   // sign up images
   static String imgFfddf1 = '$imagePath/img_ffddf_1.png';
@@ -109,4 +110,27 @@ class ImageConstant {
   static String imgNavFonts = '$imagePath/img_nav_fonts.svg';
 
   static String imageNotFound = 'assets/images/image_not_found.png';
+  static String frrfr = '$imagePath/frrfr.png';
+  static String apple = '$imagePath/apple.png';
+  static String audioWaves = '$imagePath/audio-waves.png';
+  static String dfVuelogo = '$imagePath/df_vue_logo1.png';
+  static String dfVuelogoWithName = '$imagePath/df_vue_with_name.png';
+  static String email = '$imagePath/email.png';
+  static String facebook = '$imagePath/facebook.png';
+  static String ffddf = '$imagePath/ffddf.png';
+  static String google = '$imagePath/google.png';
+  static String hhuuhuh = '$imagePath/hhuuhuh.png';
+  static String hide = '$imagePath/hide.png';
+  static String lock = '$imagePath/lock.png';
+  static String message = '$imagePath/message.png';
+  static String mmdccddf = '$imagePath/mmdccddf.png';
+  static String nnnj = '$imagePath/nnnj.png';
+  static String noisePollution = '$imagePath/noise-pollution.png';
+  static String onButton = '$imagePath/on-button.png';
+  static String padlock = '$imagePath/padlock.png';
+  static String phoneReceiverSilhouette =
+      '$imagePath/phone-receiver-silhouette.png';
+  static String signUp = '$imagePath/sign-up.png';
+  static String voiceSearch = '$imagePath/voice-search.png';
+  static String voiceSearch3 = '$imagePath/voice-search3.png';
 }
