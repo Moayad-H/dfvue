@@ -1,7 +1,6 @@
 import 'package:dfvue/View/InitialScreen/initialScreen.dart';
 import 'package:dfvue/View/LanguageScreen/languageScreen.dart';
 import 'package:dfvue/View/LogIn/logInScreen.dart';
-import 'package:dfvue/View/ProfileScreen/profile_screen.dart';
 import 'package:dfvue/View/SavedConvo/transcriptionScreen.dart';
 import 'package:dfvue/View/SignUp/sign_up_screen.dart';
 import 'package:dfvue/View/StartScreen/start_screen.dart';
@@ -14,7 +13,7 @@ class AppRoutes {
 
   static const String transcriptionScreen = '/transcription';
 
-  static const String userProfileScreen = '/user_profile_screen';
+  static const String profileEditScreen = '/profile_edit_screen';
 
   static const String microphoneScreen = '/microphone_screen';
 
@@ -133,11 +132,11 @@ class AppRoutes {
         builder: (BuildContext context, GoRouterState state) =>
             const TranscriptionScreen(),
       ),
-      GoRoute(
-        path: userProfileScreen,
-        builder: (BuildContext context, GoRouterState state) =>
-            UserProfileScreen(),
-      ),
+      // GoRoute(
+      //   path: profileEditScreen,
+      //   builder: (BuildContext context, GoRouterState state) =>
+      //    ProfileEditScreen(),
+      // ),
     ],
   );
 }

@@ -88,7 +88,7 @@ class CustomTextFormField extends StatelessWidget {
           controller: controller,
           focusNode: focusNode ?? FocusNode(),
           autofocus: autofocus!,
-          style: textStyle ?? TextStyle(color: Colors.black, fontSize: 12),
+          style: textStyle ?? CustomTextStyles.interWhiteA700,
           obscureText: obscureText!,
           textInputAction: textInputAction,
           keyboardType: textInputType,
@@ -99,7 +99,7 @@ class CustomTextFormField extends StatelessWidget {
       );
   InputDecoration get decoration => InputDecoration(
         hintText: hintText ?? "",
-        hintStyle: hintStyle ?? TextStyle(color: Colors.black, fontSize: 12),
+        hintStyle: hintStyle ?? CustomTextStyles.bodyMediumErrorContainer15,
         prefixIcon: prefix,
         prefixIconConstraints: prefixConstraints,
         suffixIcon: suffix,

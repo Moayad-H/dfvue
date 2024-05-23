@@ -50,9 +50,6 @@ dependencies:
   highlight_text: ^1.7.0
   avatar_glow: ^3.0.1
   flutter_screenutil: ^5.9.1
-  firebase_core: ^2.31.1
-  firebase_auth: ^4.19.6
-  cloud_firestore: ^4.17.4
  # audio_waveforms: ^1.0.5
 
 dev_dependencies:
