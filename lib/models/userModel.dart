@@ -1,53 +1,33 @@
 import 'dart:convert';
 
-class User {
-  String username;
-  String password;
-  String email;
-  String phoneNumber;
-  String spokenLanguage;
-  String subtitleLanguage;
+class UserProfile {
+  final String? uid;
+  final String name;
+  final String email;
+  final String password;
 
-  User({
-    required this.username,
-    required this.password,
+  UserProfile({
+    required this.uid,
+    required this.name,
     required this.email,
-    required this.phoneNumber,
-    required this.spokenLanguage,
-    required this.subtitleLanguage,
+    required this.password,
   });
 
-  // Method to convert a User object to a map
   Map<String, dynamic> toMap() {
     return {
-      'username': username,
-      'password': password,
+      'uid': uid,
+      'name': name,
       'email': email,
-      'phoneNumber': phoneNumber,
-      'spokenLanguage': spokenLanguage,
-      'subtitleLanguage': subtitleLanguage,
+      'password': password,
     };
   }
 
-  // Method to create a User object from a map
-  factory User.fromMap(Map<String, dynamic> map) {
-    return User(
-      username: map['username'],
-      password: map['password'],
+  static UserProfile fromMap(Map<String, dynamic> map) {
+    return UserProfile(
+      uid: map['uid'],
+      name: map['name'],
       email: map['email'],
-      phoneNumber: map['phoneNumber'],
-      spokenLanguage: map['spokenLanguage'],
-      subtitleLanguage: map['subtitleLanguage'],
+      password: map['password'],
     );
-  }
-
-  // Method to convert a User object to JSON
-  String toJson() {
-    return json.encode(toMap());
-  }
-
-  // Method to create a User object from JSON
-  factory User.fromJson(String source) {
-    return User.fromMap(json.decode(source));
   }
 }
