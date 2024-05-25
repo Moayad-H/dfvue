@@ -1,4 +1,5 @@
 import 'package:dfvue/Providers/profileProvider.dart';
+import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/routes/app_routes.dart';
 import 'package:dfvue/theme/app_decoration.dart';
 import 'package:dfvue/theme/custom_button_style.dart';
@@ -39,30 +40,30 @@ class UserProfileScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          "Name",
+                        Text(
+                          "lbl_username".tr(context),
                           style: TextStyle(color: Colors.black, fontSize: 14),
                         ),
                         SizedBox(height: 2.v),
                         CustomTextFormField(
                           autofocus: false,
                           controller: provider.nameController,
-                          hintText: "name",
+                          hintText: "lbl_username".tr(context),
                           hintStyle: const TextStyle(
                               color: Colors.black, fontSize: 14),
                           contentPadding: EdgeInsets.symmetric(
                               horizontal: 12.h, vertical: 11.v),
                         ),
                         SizedBox(height: 18.v),
-                        const Text(
-                          "Email",
+                        Text(
+                          "lbl_email_i_d".tr(context),
                           style: TextStyle(color: Colors.black, fontSize: 14),
                         ),
                         SizedBox(height: 2.v),
                         CustomTextFormField(
                           autofocus: false,
                           controller: provider.emailController,
-                          hintText: "Email",
+                          hintText: "lbl_email_i_d".tr(context),
                           hintStyle: const TextStyle(
                               color: Colors.black, fontSize: 14),
                           textInputType: TextInputType.emailAddress,
@@ -92,16 +93,16 @@ class UserProfileScreen extends StatelessWidget {
                         },
                         child: Padding(
                           padding: EdgeInsets.only(right: 6.h, top: 3.v),
-                          child: const Row(
+                          child: Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.login,
                                 color: Colors.red,
                               ),
                               Text(
-                                "Log Out",
-                                style:
-                                    TextStyle(color: Colors.red, fontSize: 20),
+                                "lbl_log_out".tr(context),
+                                style: const TextStyle(
+                                    color: Colors.red, fontSize: 20),
                               ),
                             ],
                           ),
@@ -138,12 +139,12 @@ class UserProfileScreen extends StatelessWidget {
                   icon: Icon(Icons.arrow_back)),
             ],
           ),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Profile",
-                style: TextStyle(
+                "lbl_profile".tr(context),
+                style: const TextStyle(
                     fontSize: 30,
                     color: Colors.black,
                     fontWeight: FontWeight.w900),
@@ -167,7 +168,7 @@ class UserProfileScreen extends StatelessWidget {
     return CustomElevatedButton(
       onPressed: () => provider.updateProfile(context),
       height: 40.v,
-      text: "Update",
+      text: "lbl_update".tr(context),
       margin: EdgeInsets.only(left: 54.h, right: 53.h),
       buttonStyle: CustomButtonStyles.outlineErrorContainer,
     );

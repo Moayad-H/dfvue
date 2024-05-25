@@ -24,10 +24,13 @@ class SignupProvider with ChangeNotifier {
 
   final TextEditingController subtitleLanguageController =
       TextEditingController();
-
+  bool isObscure = true;
   final AuthService authService = AuthService();
   final UserProfileService userProfileService = UserProfileService();
-
+  void changeObscure() {
+    isObscure = !isObscure;
+    notifyListeners();
+  }
   // Future<void> createUser({
   //   required String username,
   //   required String password,

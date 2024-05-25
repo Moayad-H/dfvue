@@ -15,7 +15,7 @@ import 'dart:convert';
 class ProfileProvider with ChangeNotifier {
   bool isLoading = false;
   final UserProfileService _userProfileService = UserProfileService();
-  UserProfile? _userProfile;
+  static UserProfile? _userProfile;
   TextEditingController nameController = TextEditingController();
 
   TextEditingController emailController = TextEditingController();
@@ -24,12 +24,14 @@ class ProfileProvider with ChangeNotifier {
   Future<void> loadUserProfile() async {
     isLoading = true;
     notifyListeners();
-    _userProfile = await _userProfileService.getUserProfile();
-    nameController.text = _userProfile!.name;
-    emailController.text = _userProfile!.email;
-    log(_userProfile!.email.toString());
-    isLoading = false;
-    notifyListeners();
+    if (FirebaseAuth.instance.currentUser != null) {
+      _userProfile = await _userProfileService.getUserProfile();
+      nameController.text = _userProfile!.name;
+      emailController.text = _userProfile!.email;
+      log(_userProfile!.email.toString());
+      isLoading = false;
+      notifyListeners();
+    }
   }
 
   Future<void> updateProfile(context) async {

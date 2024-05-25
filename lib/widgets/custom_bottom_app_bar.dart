@@ -1,4 +1,4 @@
-import 'package:dfvue/Providers/theme_provider.dart';
+import 'package:dfvue/Providers/app_provider.dart';
 import 'package:dfvue/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dfvue/app_export.dart';
@@ -35,7 +35,7 @@ class CustomBottomAppBarState extends State<CustomBottomAppBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
+    return Consumer<AppProvider>(
       builder: (context, value, child) => BottomAppBar(
         shape: CircularNotchedRectangle(),
         child: SizedBox(

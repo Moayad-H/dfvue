@@ -8,7 +8,7 @@ import 'package:speech_to_text/speech_to_text.dart' as stt;
 class VoiceRecognitionProvider extends ChangeNotifier {
   late stt.SpeechToText speech;
   bool isListening = false;
-  String _currentText = 'Press the button and start speaking';
+  String? _currentText;
   List<TranscriptionModel> _textList = [];
   String _saveStatusMessage = '';
 
@@ -17,11 +17,15 @@ class VoiceRecognitionProvider extends ChangeNotifier {
     readFromFile();
   }
 
-  String get currentText => _currentText;
+  String? get currentText => _currentText;
   List<TranscriptionModel> get textList => _textList;
   String get saveStatusMessage => _saveStatusMessage;
+  void initialText(text) {
+    _currentText = text;
+    notifyListeners();
+  }
 
-  void listen() async {
+  void listen(Locale? locale, text) async {
     if (!isListening) {
       bool available = await speech.initialize(
         onStatus: (val) => print('onStatus: $val'),
@@ -30,7 +34,7 @@ class VoiceRecognitionProvider extends ChangeNotifier {
       if (available) {
         isListening = true;
         speech.listen(
-          localeId: 'en',
+          localeId: locale!.languageCode,
           onResult: (result) {
             _currentText = result.recognizedWords;
             notifyListeners();
@@ -51,7 +55,7 @@ class VoiceRecognitionProvider extends ChangeNotifier {
       final file = File(path);
 
       final transcription = TranscriptionModel(
-        text: _currentText,
+        text: _currentText!,
         timestamp: DateTime.now(),
       );
 
