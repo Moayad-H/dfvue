@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:dfvue/Providers/voice_recognition_provider.dart';
+import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dfvue/app_export.dart';
@@ -20,6 +21,15 @@ class TranscriptionScreen extends StatelessWidget {
                     width: double.maxFinite,
                     child: Column(children: [
                       _buildOne(context),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          IconButton(
+                              iconSize: 30,
+                              onPressed: GoRouter.of(context).pop,
+                              icon: Icon(Icons.arrow_back)),
+                        ],
+                      ),
                       SizedBox(height: 40.v),
                       Expanded(
                         child: Padding(
@@ -101,11 +111,12 @@ class TranscriptionScreen extends StatelessWidget {
         decoration: AppDecoration.fillPrimary
             .copyWith(borderRadius: BorderRadiusStyle.customBorderBR110),
         child: Column(
-            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 44.v),
-              Text("Conversations", style: theme.textTheme.headlineLarge)
+              SizedBox(height: 80.v),
+              Text("conversations".tr(context),
+                  style: theme.textTheme.headlineLarge)
             ]));
   }
 }

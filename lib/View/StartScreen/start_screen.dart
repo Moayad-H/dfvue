@@ -1,4 +1,6 @@
 import 'package:dfvue/Providers/profileProvider.dart';
+import 'package:dfvue/Providers/voice_recognition_provider.dart';
+import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dfvue/app_export.dart';
@@ -13,108 +15,125 @@ class StartScreen extends StatelessWidget {
     mediaQueryData = MediaQuery.of(context);
     return Consumer<ProfileProvider>(
       builder: (context, value, child) => SafeArea(
-          child: Scaffold(
-              backgroundColor: theme.colorScheme.primary,
-              body: Container(
-                  width: double.maxFinite,
-                  padding: EdgeInsets.symmetric(vertical: 20.v),
-                  child: Column(children: [
-                    SizedBox(
-                        height: 500.v,
-                        width: double.maxFinite,
-                        child: Stack(alignment: Alignment.topRight, children: [
-                          CustomImageView(
-                              imagePath: ImageConstant.imgDfVue61,
-                              height: 571.v,
-                              width: 390.h,
-                              alignment: Alignment.center),
-                          CustomImageView(
-                              imagePath: ImageConstant.imgNnnj1,
-                              height: 30.adaptSize,
-                              width: 30.adaptSize,
-                              alignment: Alignment.topRight,
-                              margin: EdgeInsets.only(right: 66.h),
-                              onTap: () {
-                                onTapImgNnnjOne(context);
-                              }),
-                          Align(
-                              alignment: Alignment.topRight,
-                              child: Container(
-                                  height: 25.v,
-                                  width: 28.h,
-                                  margin:
-                                      EdgeInsets.only(top: 2.v, right: 16.h),
-                                  decoration: BoxDecoration(
-                                      color: appTheme.blueGray100,
-                                      borderRadius:
-                                          BorderRadius.circular(14.h)))),
-                          CustomImageView(
-                              imagePath: ImageConstant.imgPp4,
-                              height: 30.v,
-                              width: 33.h,
-                              radius: BorderRadius.circular(15.h),
-                              alignment: Alignment.topRight,
-                              margin: EdgeInsets.only(right: 11.h),
-                              onTap: () {
-                                value.loadUserProfile();
-                                GoRouter.of(context).push(
-                                  AppRoutes.userProfileScreen,
-                                );
-                              })
-                        ])),
-                    //   _buildThirtyNine(context)
-                    GestureDetector(
+          child: Consumer<VoiceRecognitionProvider>(
+        builder: (context, voice, child) => Scaffold(
+            backgroundColor: theme.colorScheme.primary,
+            body: Container(
+                width: double.maxFinite,
+                padding: EdgeInsets.symmetric(vertical: 20.v),
+                child: Column(children: [
+                  SizedBox(
+                      height: 500.v,
+                      width: double.maxFinite,
+                      child: Stack(alignment: Alignment.topRight, children: [
+                        CustomImageView(
+                            imagePath: ImageConstant.imgDfVue61,
+                            height: 571.v,
+                            width: 390.h,
+                            alignment: Alignment.center),
+                        Row(
+                          children: [
+                            IconButton(
+                                alignment: Alignment.topLeft,
+                                iconSize: 30,
+                                onPressed: GoRouter.of(context).pop,
+                                icon: Icon(Icons.arrow_back)),
+                          ],
+                        ),
+                        CustomImageView(
+                            imagePath: ImageConstant.imgNnnj1,
+                            height: 30.adaptSize,
+                            width: 30.adaptSize,
+                            alignment: Alignment.topRight,
+                            margin: EdgeInsets.only(right: 66.h),
+                            onTap: () {
+                              onTapImgNnnjOne(context);
+                            }),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: Container(
+                            height: 25.v,
+                            width: 28.h,
+                            margin: EdgeInsets.only(top: 2.v, right: 16.h),
+                            decoration: BoxDecoration(
+                                color: appTheme.blueGray100,
+                                borderRadius: BorderRadius.circular(14.h)),
+                          ),
+                        ),
+                        CustomImageView(
+                            imagePath: ImageConstant.imgPp4,
+                            height: 30.v,
+                            width: 33.h,
+                            radius: BorderRadius.circular(15.h),
+                            alignment: Alignment.topRight,
+                            margin: EdgeInsets.only(right: 11.h),
+                            onTap: () {
+                              value.loadUserProfile();
+                              GoRouter.of(context).push(
+                                AppRoutes.userProfileScreen,
+                              );
+                            })
+                      ])),
+                  //   _buildThirtyNine(context)
+                  Padding(
+                    padding: const EdgeInsets.all(15.0),
+                    child: GestureDetector(
                       onTap: () {},
                       child: Container(
+                        width: double.infinity,
                         padding: EdgeInsets.symmetric(
-                          horizontal: 63.h,
+                          horizontal: 40.h,
                           vertical: 23.v,
                         ),
                         decoration: AppDecoration.outlineWhiteA,
                         child: Column(
                           children: [
                             Text(
-                              "AR Subtitels",
+                              "lbl_ar_subtitles".tr(context),
                               style: CustomTextStyles.titleLargeInterWhiteA700,
                             ),
-                            SizedBox(height: 10.v),
+                            SizedBox(height: 5.v),
                             Text(
-                              'thirtynineItemModelObj.requirements!',
+                              "msg_requires_supported".tr(context),
                               style: CustomTextStyles.bodySmallOutfitWhiteA700,
-                            ),
-                            SizedBox(height: 9.v),
+                            )
                           ],
                         ),
                       ),
                     ),
-                    SizedBox(height: 10.v),
-                    GestureDetector(
-                      onTap: () {
-                        onTapThirtyNine(context);
-                      },
+                  ),
+
+                  GestureDetector(
+                    onTap: () {
+                      onTapThirtyNine(context, voice);
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
                       child: Container(
+                        width: double.infinity,
                         padding: EdgeInsets.symmetric(
-                          horizontal: 63.h,
+                          horizontal: 64.h,
                           vertical: 23.v,
                         ),
                         decoration: AppDecoration.outlineWhiteA,
                         child: Column(
                           children: [
                             Text(
-                              'Subtitles',
+                              "lbl_subtitles".tr(context),
                               style: CustomTextStyles.titleLargeInterWhiteA700,
                             ),
-                            SizedBox(height: 10.v),
+                            SizedBox(height: 5.v),
                             Text(
-                              'thirtynineItemModelObj.requirements!',
+                              "msg_run_on_your_phone".tr(context),
                               style: CustomTextStyles.bodySmallOutfitWhiteA700,
                             ),
-                            SizedBox(height: 9.v),
                           ],
                         ),
                       ),
-                    )
-                  ])))),
+                    ),
+                  )
+                ]))),
+      )),
     );
   }
 
@@ -141,7 +160,8 @@ class StartScreen extends StatelessWidget {
   // }
 
   /// Navigates to the voiceRecognitionScreen when the action is triggered.
-  onTapThirtyNine(BuildContext context) {
+  onTapThirtyNine(BuildContext context, VoiceRecognitionProvider provider) {
+    provider.initialText("lbl_speaking".tr(context));
     GoRouter.of(context).push(AppRoutes.voiceRecognitionScreen);
   }
 

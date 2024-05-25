@@ -1,4 +1,4 @@
-import 'package:dfvue/Providers/theme_provider.dart';
+import 'package:dfvue/Providers/app_provider.dart';
 import 'package:dfvue/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -9,7 +9,7 @@ import '../app_export.dart';
 /// Additionally, this class includes extensions on [TextStyle] to easily apply specific font families to text.
 
 class CustomTextStyles {
-  static final theme = ThemeProvider(ThemeData.light());
+  static final theme = AppProvider(ThemeData.light());
   // Body text style
   static get bodyMediumErrorContainer =>
       theme.themeData.textTheme.bodyMedium!.copyWith(

@@ -1,24 +1,26 @@
 final Map<String, String> enUs = {
   // sign up Screen
-  "lbl_sign_up_with": "sign up with",
-  "msg_already_have_an": "already have an account??",
+  "lbl_sign_up_with": "Sign Up With",
+  "msg_already_have_an": "Already have an account?",
   "msg_create_your_account": "Create your Account",
-  "msg_enter_your_phone": "Enter your phone number",
+  // "msg_enter_your_phone": "Enter your phone number",
 
   // templates Screen
-  "lbl_conversations": "Conversations",
+  "conversations": "Conversations",
 
   // Profile Edit Screen
   "lbl_14987889999": "+14987889999",
   "lbl_change_picture": "Change Picture",
-  "lbl_email_i_d": "Email I’d",
+  "lbl_email_i_d": "Email",
   "lbl_log_out": "Log out",
   "lbl_phone_number": "Phone Number",
   "lbl_profile": "Profile  ",
   "lbl_update": "Update",
   "lbl_user": "user",
   "lbl_user_gmail_com": "user@gmail.com",
-  "lbl_username": "Username",
+  "lbl_username": "Name",
+  "lbl_enter_email": "Enter your email",
+  "lbl_enter_password": "Enter your password",
 
   // microphone Screen
   "lbl_default": "Default",
@@ -31,17 +33,17 @@ final Map<String, String> enUs = {
 
   // ;anguage Screen
   "lbl_spoken_language": "SPOKEN LANGUAGE",
-  "msg_before_you_start2": "Before you start , lets set up your \nlanguage.",
-  "msg_select_app_language": "select  app language",
-  "msg_subtitle_language": "SUBTITLE LANGUAGE",
+  "msg_before_you_start2": "Before you start , lets set up your language.",
+  "msg_select_app_language": "Select app language",
+  "msg_subtitle_language": "Select subtitle language",
   "msg_what_language_the":
       "what language the app should use for user interface, speech and subtitles",
 
   // log in Screen
   "lbl_forgetpassword": "forgetPassword?",
   "lbl_sign_in_with": "sign in with",
-  "lbl_signup2": "SignUp",
-  "lbl_welocme_back": "welocme Back",
+  "lbl_sign_up": "Sign Up",
+  "lbl_welcome_back": "Welcome Back",
   "msg_dont_have_an_account": "dont have an account??",
 
   // reset password Screen
@@ -74,7 +76,7 @@ final Map<String, String> enUs = {
   // voice recognition Screen
   "lbl_listening": "Listening",
   "msg_hello_good_morning2": "hello good morning \ncan you show ........",
-
+  "lbl_speaking": "Press the button and start speaking",
   // edit settings Screen
   "lbl_colors": "colors",
   "lbl_fonts": "fonts",
@@ -115,7 +117,7 @@ final Map<String, String> enUs = {
   "lbl_reset_password": "Reset password",
   "lbl_sign_up": "Sign up",
   "lbl_submit": "Submit",
-  "lbl_welcome_user": "welcome user",
+  "lbl_welcome_user": "Welcome ",
   "msg_91_12989200823": "+91 - 12989200823",
   "msg_enter_your_password": "Enter your  password",
   "msg_hello_good_morning": "hello good morning can you show \nme around ??",

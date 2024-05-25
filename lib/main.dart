@@ -1,7 +1,7 @@
 import 'package:dfvue/Providers/SignUpProvider.dart';
 import 'package:dfvue/Providers/logInProvider.dart';
 import 'package:dfvue/Providers/profileProvider.dart';
-import 'package:dfvue/Providers/theme_provider.dart';
+import 'package:dfvue/Providers/app_provider.dart';
 import 'package:dfvue/Providers/voice_recognition_provider.dart';
 import 'package:dfvue/app_export.dart';
 import 'package:dfvue/localization/app_localization.dart';
@@ -18,14 +18,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp();
-  final themeProvider = ThemeProvider(ThemeData.light());
-  await themeProvider.loadThemeFromPrefs();
+  final appProvider = AppProvider(ThemeData.light());
+  await appProvider.loadThemeFromPrefs();
+  await ProfileProvider().loadUserProfile();
 
   runApp(
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => VoiceRecognitionProvider()),
-        ChangeNotifierProvider(create: (_) => themeProvider),
+        ChangeNotifierProvider(create: (_) => appProvider),
         ChangeNotifierProvider(create: (_) => LogInProvider()),
         ChangeNotifierProvider(create: (_) => SignupProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<ThemeProvider>(
+    return Consumer<AppProvider>(
       builder: (context, provider, child) => MaterialApp.router(
         // routerDelegate: AppRoutes.router.routerDelegate,
         // routeInformationParser: AppRoutes.router.routeInformationParser,
@@ -57,7 +58,10 @@ class MyApp extends StatelessWidget {
         ],
         supportedLocales: const [
           Locale('en', ''),
+          Locale('ar', ''),
         ],
+        locale: provider.locale,
+
         //initialRoute: AppRoutes.initialRoute,
         //routes: AppRoutes.routes,
       ),

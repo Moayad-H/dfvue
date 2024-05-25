@@ -1,5 +1,7 @@
 import 'package:dfvue/Providers/SignUpProvider.dart';
 import 'package:dfvue/Providers/logInProvider.dart';
+import 'package:dfvue/Providers/profileProvider.dart';
+import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dfvue/app_export.dart';
@@ -28,16 +30,15 @@ class LogInScreen extends StatelessWidget {
               width: double.maxFinite,
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.only(left: 14.h),
+                  padding: EdgeInsets.only(top: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      SizedBox(height: 99.v),
+                      SizedBox(height: 40.v),
                       Text(
-                        "Welcome Back",
+                        "lbl_welcome_back".tr(context),
                         style: theme.textTheme.headlineSmall,
                       ),
-                      SizedBox(height: 79.v),
                       SizedBox(
                         height: 795.v,
                         width: 383.h,
@@ -119,40 +120,28 @@ class LogInScreen extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Expanded(
-                                      child: Padding(
-                                        padding: EdgeInsets.only(
-                                          left: 20.h,
-                                          right: 5.h,
-                                        ),
-                                        child: CustomTextFormField(
-                                          autofocus: false,
-                                          controller: provider.emailController,
-                                          hintText: "Enter Your Email",
-                                          alignment: Alignment.center,
-                                          prefix: Container(
-                                            margin: EdgeInsets.fromLTRB(
-                                              17.h,
-                                              18.v,
-                                              12.h,
-                                              17.v,
-                                            ),
-                                            child: CustomImageView(
-                                              imagePath:
-                                                  ImageConstant.imgSignup3,
-                                              height: 25.adaptSize,
-                                              width: 25.adaptSize,
-                                            ),
-                                          ),
-                                          prefixConstraints:
-                                              BoxConstraints(maxHeight: 60.v),
-                                          validator: (value) {
-                                            if (!isText(value)) {
-                                              return "Please Enter Valid Text";
-                                            }
-                                            return null;
-                                          },
-                                        ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        left: 20.h,
+                                        right: 5.h,
+                                      ),
+                                      child: CustomTextFormField(
+                                        autofocus: false,
+                                        controller: provider.emailController,
+                                        hintText:
+                                            "lbl_email_address".tr(context),
+                                        textInputType:
+                                            TextInputType.emailAddress,
+                                        prefix: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 17.v),
+                                            child: Icon(Icons.email)),
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Please enter your email';
+                                          }
+                                          return null;
+                                        },
                                       ),
                                     ),
                                     SizedBox(height: 40.v),
@@ -164,49 +153,24 @@ class LogInScreen extends StatelessWidget {
                                       child: CustomTextFormField(
                                         autofocus: false,
                                         controller: provider.passwordController,
-                                        hintText: "Enter Your Password",
+                                        hintText:
+                                            "lbl_enter_password".tr(context),
                                         textInputAction: TextInputAction.done,
                                         textInputType:
                                             TextInputType.visiblePassword,
-                                        alignment: Alignment.center,
-                                        prefix: Container(
-                                          margin: EdgeInsets.fromLTRB(
-                                            17.h,
-                                            18.v,
-                                            12.h,
-                                            17.v,
-                                          ),
-                                          child: CustomImageView(
-                                            imagePath:
-                                                ImageConstant.imgHhuuhuh2,
-                                            height: 25.adaptSize,
-                                            width: 25.adaptSize,
-                                          ),
-                                        ),
-                                        prefixConstraints:
-                                            BoxConstraints(maxHeight: 60.v),
+                                        obscureText: provider.isObscure,
+                                        prefix: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                vertical: 17.v),
+                                            child: Icon(Icons.password)),
                                         suffix: InkWell(
-                                          onTap: () async {},
-                                          child: Container(
-                                            margin: EdgeInsets.fromLTRB(
-                                              12.h,
-                                              18.v,
-                                              16.h,
-                                              17.v,
-                                            ),
-                                            child: CustomImageView(
-                                              imagePath: ImageConstant.imgHide1,
-                                              height: 25.adaptSize,
-                                              width: 25.adaptSize,
-                                            ),
-                                          ),
+                                          onTap: provider.changeObscure,
+                                          child: provider.isObscure
+                                              ? Icon(Icons.visibility_sharp)
+                                              : Icon(Icons.visibility_off),
                                         ),
-                                        suffixConstraints:
-                                            BoxConstraints(maxHeight: 60.v),
                                         validator: (value) {
-                                          if (value == null ||
-                                              (!isValidPassword(value,
-                                                  isRequired: true))) {
+                                          if (value == null || value.isEmpty) {
                                             return "Please enter a valid password";
                                           }
                                           return null;
@@ -232,69 +196,75 @@ class LogInScreen extends StatelessWidget {
                                         ),
                                       ),
                                     ),
-                                    SizedBox(height: 50.v),
-                                    _buildLogIn(context, provider),
-                                    SizedBox(height: 15.v),
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                        left: 80.h,
-                                        right: 80.h,
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          CustomImageView(
-                                            imagePath:
-                                                ImageConstant.imgFacebook1,
-                                            height: 25.adaptSize,
-                                            width: 25.adaptSize,
+                                    Column(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        _buildLogIn(context, provider),
+                                        SizedBox(height: 15.v),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            left: 80.h,
+                                            right: 80.h,
                                           ),
-                                          Spacer(flex: 45),
-                                          CustomImageView(
-                                            imagePath: ImageConstant.imgGoogle1,
-                                            height: 25.adaptSize,
-                                            width: 25.adaptSize,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              CustomImageView(
+                                                imagePath:
+                                                    ImageConstant.imgFacebook1,
+                                                height: 25.adaptSize,
+                                                width: 25.adaptSize,
+                                              ),
+                                              Spacer(flex: 45),
+                                              CustomImageView(
+                                                imagePath:
+                                                    ImageConstant.imgGoogle1,
+                                                height: 25.adaptSize,
+                                                width: 25.adaptSize,
+                                              ),
+                                              Spacer(flex: 54),
+                                              CustomImageView(
+                                                imagePath:
+                                                    ImageConstant.imgApple1,
+                                                height: 25.adaptSize,
+                                                width: 25.adaptSize,
+                                              ),
+                                            ],
                                           ),
-                                          Spacer(flex: 54),
-                                          CustomImageView(
-                                            imagePath: ImageConstant.imgApple1,
-                                            height: 25.adaptSize,
-                                            width: 25.adaptSize,
+                                        ),
+                                        SizedBox(height: 26.v),
+                                        Padding(
+                                          padding: EdgeInsets.all(1),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsets.only(
+                                                    bottom: 1.v),
+                                                child: Text(
+                                                  "msg_already_have_an"
+                                                      .tr(context),
+                                                  style: CustomTextStyles
+                                                      .bodyMediumOnErrorContainer,
+                                                ),
+                                              ),
+                                              GestureDetector(
+                                                onTap: () {
+                                                  onTapTxtSignUp(context);
+                                                },
+                                                child: Text(
+                                                  "lbl_sign_up".tr(context),
+                                                  style: CustomTextStyles
+                                                      .bodyMediumPrimary,
+                                                ),
+                                              ),
+                                            ],
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 26.v),
-                                    Padding(
-                                      padding: EdgeInsets.all(1),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Padding(
-                                            padding:
-                                                EdgeInsets.only(bottom: 1.v),
-                                            child: Text(
-                                              "Don't have an account",
-                                              style: CustomTextStyles
-                                                  .bodyMediumOnErrorContainer,
-                                            ),
-                                          ),
-                                          GestureDetector(
-                                            onTap: () {
-                                              onTapTxtSignUp(context);
-                                            },
-                                            child: Text(
-                                              "Sign Up",
-                                              style: CustomTextStyles
-                                                  .bodyMediumPrimary,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    SizedBox(height: 83.v),
+                                        ),
+                                      ],
+                                    )
                                   ],
                                 ),
                               ),
@@ -315,42 +285,21 @@ class LogInScreen extends StatelessWidget {
 
   /// Section Widget
   Widget _buildLogIn(BuildContext context, LogInProvider provider) {
-    return SizedBox(
-      height: 151.v,
-      width: 323.h,
-      child: Stack(
-        alignment: Alignment.bottomLeft,
-        children: [
-          CustomElevatedButton(
-            height: 53.v,
-            width: 318.h,
-            text: "lbl_log_in2",
-            buttonStyle: CustomButtonStyles.outlineErrorContainerTL10,
-            alignment: Alignment.center,
-            // onPressed: onTapImgCdddfOne(context),
-          ),
-          Align(
-            alignment: Alignment.bottomLeft,
-            child: Padding(
-              padding: EdgeInsets.only(left: 116.h),
-              child: Text(
-                "lbl_sign_in_with",
-                style: CustomTextStyles.bodyMediumErrorContainer15_1,
-              ),
-            ),
-          ),
-          CustomImageView(
-            imagePath: ImageConstant.imgCdddf2,
-            height: 142.v,
-            width: 200.h,
-            alignment: Alignment.topRight,
-            onTap: () {
-              provider.logIn(context);
-            },
-          ),
-        ],
+    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+      CustomElevatedButton(
+        height: 53.v,
+        width: 318.h,
+        text: "lbl_login".tr(context),
+        buttonStyle: CustomButtonStyles.outlineErrorContainerTL10,
+        alignment: Alignment.center,
+        // onPressed: onTapImgCdddfOne(context),
+        onPressed: () async {
+          await provider.logIn(context);
+          await ProfileProvider().loadUserProfile();
+          GoRouter.of(context).go(AppRoutes.authPage);
+        },
       ),
-    );
+    ]);
   }
 
   /// Navigates to the resetPasswordScreen when the action is triggered.

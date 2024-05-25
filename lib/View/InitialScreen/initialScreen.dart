@@ -1,4 +1,5 @@
 import 'dart:developer';
+import 'package:dfvue/localization/app_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -50,7 +51,7 @@ class InitialScreen extends StatelessWidget {
                   CustomOutlinedButton(
                     height: 63,
                     width: 212,
-                    text: "Log In",
+                    text: "lbl_login".tr(context),
                     buttonStyle: CustomButtonStyles.outlineLime,
                     buttonTextStyle:
                         const TextStyle(color: Colors.black, fontSize: 20),
@@ -63,7 +64,7 @@ class InitialScreen extends StatelessWidget {
                   CustomOutlinedButton(
                       height: 63,
                       width: 212,
-                      text: "Sign Up",
+                      text: "lbl_sign_up".tr(context),
                       buttonStyle:
                           CustomButtonStyles.outlineErrorContainerTL101,
                       buttonTextStyle:

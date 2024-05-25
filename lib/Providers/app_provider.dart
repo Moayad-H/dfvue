@@ -1,12 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class ThemeProvider extends ChangeNotifier {
+class AppProvider extends ChangeNotifier {
   ThemeData _themeData;
 
-  ThemeProvider(this._themeData);
+  AppProvider(this._themeData);
 
   ThemeData get themeData => _themeData;
+  static Locale _locale = Locale('en');
+  static Locale _spokenLocale = Locale('en');
+  Locale? get spokenLocale => _spokenLocale;
+  Locale? get locale => _locale;
+  void setLocale(Locale locale) {
+    _locale = locale;
+    notifyListeners();
+  }
+
+  void setSpokenLocale(Locale locale) {
+    _spokenLocale = locale;
+    notifyListeners();
+  }
 
   void setTheme(ThemeData themeData) {
     _themeData = themeData;

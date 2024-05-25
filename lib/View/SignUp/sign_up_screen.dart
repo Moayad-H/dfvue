@@ -1,3 +1,5 @@
+import 'package:dfvue/localization/app_localization.dart';
+import 'package:dfvue/widgets/custom_elevated_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:go_router/go_router.dart';
@@ -34,7 +36,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       children: [
                         SizedBox(height: 87.v),
                         Text(
-                          "Create Your Account",
+                          "msg_create_your_account".tr(context),
                           style: theme.textTheme.headlineSmall,
                         ),
                         SizedBox(height: 91.v),
@@ -49,17 +51,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             children: [
                               CustomTextFormField(
                                 controller: profileProvider.nameController,
-                                hintText: "Enter Your name",
+                                hintText: "lbl_enter_your_name".tr(context),
                                 textStyle: const TextStyle(
                                     color: Colors.black, fontSize: 12),
                                 prefix: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 17.v),
-                                  child: CustomImageView(
-                                    imagePath: ImageConstant.imgSignup3,
-                                    height: 25.adaptSize,
-                                    width: 25.adaptSize,
-                                  ),
-                                ),
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 17.v),
+                                    child: Icon(Icons.person)),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Please enter your name';
@@ -69,17 +67,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               SizedBox(height: 33.v),
                               CustomTextFormField(
+                                autofocus: false,
                                 controller: profileProvider.emailController,
-                                hintText: "Enter your Email Address",
+                                hintText: "lbl_email_address".tr(context),
                                 textInputType: TextInputType.emailAddress,
                                 prefix: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 17.v),
-                                  child: CustomImageView(
-                                    imagePath: ImageConstant.imgFfddf1,
-                                    height: 25.adaptSize,
-                                    width: 25.adaptSize,
-                                  ),
-                                ),
+                                    padding:
+                                        EdgeInsets.symmetric(vertical: 17.v),
+                                    child: Icon(Icons.email)),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
                                     return 'Please enter your email';
@@ -89,29 +84,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               SizedBox(height: 33.v),
                               CustomTextFormField(
+                                autofocus: false,
                                 controller: profileProvider.passwordController,
-                                hintText: "Enter your password",
+                                hintText: "lbl_enter_password".tr(context),
                                 textInputAction: TextInputAction.done,
                                 textInputType: TextInputType.visiblePassword,
+                                obscureText: profileProvider.isObscure,
                                 prefix: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 17.v),
-                                  child: CustomImageView(
-                                    imagePath: ImageConstant.imgHhuuhuh2,
-                                    height: 25.adaptSize,
-                                    width: 25.adaptSize,
-                                  ),
-                                ),
-                                suffix: InkWell(
-                                  onTap: () {},
-                                  child: Padding(
                                     padding:
                                         EdgeInsets.symmetric(vertical: 17.v),
-                                    child: CustomImageView(
-                                      imagePath: ImageConstant.imgHide1,
-                                      height: 25.adaptSize,
-                                      width: 25.adaptSize,
-                                    ),
-                                  ),
+                                    child: Icon(Icons.password)),
+                                suffix: InkWell(
+                                  onTap: profileProvider.changeObscure,
+                                  child: profileProvider.isObscure
+                                      ? Icon(Icons.visibility_sharp)
+                                      : Icon(Icons.visibility_off),
                                 ),
                                 validator: (value) {
                                   if (value == null || value.isEmpty) {
@@ -133,19 +120,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text(
-                                      "Sign Up",
-                                      style: theme.textTheme.titleSmall,
-                                    ),
-                                    IconButton(
-                                      onPressed: () {
-                                        profileProvider.signUp(context);
-                                      },
-                                      icon: CustomImageView(
-                                        imagePath: ImageConstant.imgCdddf2,
-                                        height: 40.v,
-                                        width: 100.h,
-                                      ),
+                                    CustomElevatedButton(
+                                      onPressed: () => profileProvider.signUp,
+                                      height: 53.v,
+                                      width: 318.h,
+                                      text: "lbl_sign_up".tr(context),
+                                      buttonStyle: CustomButtonStyles
+                                          .outlineErrorContainerTL10,
+                                      alignment: Alignment.center,
+                                      // onPressed: onTapImgCdddfOne(context),
                                     ),
                                   ],
                                 ),
@@ -178,7 +161,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   Text(
-                                    "Already have an account?",
+                                    "msg_already_have_an".tr(context),
                                     style: CustomTextStyles
                                         .bodyMediumOnErrorContainer,
                                   ),
@@ -188,7 +171,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           .push(AppRoutes.logInScreen);
                                     },
                                     child: Text(
-                                      "Login",
+                                      "lbl_login".tr(context),
                                       style: CustomTextStyles.bodyMediumPrimary,
                                     ),
                                   ),

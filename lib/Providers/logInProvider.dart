@@ -17,13 +17,16 @@ class LogInProvider with ChangeNotifier {
 
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-
+  bool isObscure = true;
   final CollectionReference _usersCollection =
       FirebaseFirestore.instance.collection('users');
 
   final AuthService authService = AuthService();
   final UserProfileService userProfileService = UserProfileService();
-
+  void changeObscure() {
+    isObscure = !isObscure;
+    notifyListeners();
+  }
   // Future<void> createUser({
   //   required String username,
   //   required String password,
@@ -93,7 +96,6 @@ class LogInProvider with ChangeNotifier {
       } else {
         GoRouter.of(context).pop();
         const SnackBar(content: Text('Logged In'));
-        GoRouter.of(context).go(AppRoutes.authPage);
       }
       //GoRouter.of(context).go(AppRoutes.authPage);
     } on FirebaseAuthException catch (e) {
