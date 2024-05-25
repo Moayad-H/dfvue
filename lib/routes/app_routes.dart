@@ -1,6 +1,8 @@
+import 'package:dfvue/View/AuthPage/auth.dart';
 import 'package:dfvue/View/InitialScreen/initialScreen.dart';
 import 'package:dfvue/View/LanguageScreen/languageScreen.dart';
 import 'package:dfvue/View/LogIn/logInScreen.dart';
+import 'package:dfvue/View/ProfileScreen/profile_screen.dart';
 import 'package:dfvue/View/SavedConvo/transcriptionScreen.dart';
 import 'package:dfvue/View/SignUp/sign_up_screen.dart';
 import 'package:dfvue/View/StartScreen/start_screen.dart';
@@ -9,11 +11,12 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoutes {
+  static const String authPage = '/';
   static const String signUpScreen = '/sign_up_screen';
 
   static const String transcriptionScreen = '/transcription';
 
-  static const String profileEditScreen = '/profile_edit_screen';
+  static const String userProfileScreen = '/user_profile_screen';
 
   static const String microphoneScreen = '/microphone_screen';
 
@@ -42,7 +45,7 @@ class AppRoutes {
 
   static const String editFontsPage = '/edit_fonts_page';
 
-  static const String initScreen = '/';
+  static const String initScreen = '/init_screen';
 
   static const String otpVerifcationScreen = '/otp_verifcation_screen';
 
@@ -75,10 +78,15 @@ class AppRoutes {
   //     };
   static var globalNavKey = GlobalKey<NavigatorState>();
   static final router = GoRouter(
-    initialLocation: initScreen,
+    initialLocation: authPage,
     debugLogDiagnostics: true,
     navigatorKey: globalNavKey,
     routes: <RouteBase>[
+      GoRoute(
+        path: authPage,
+        builder: (BuildContext context, GoRouterState state) =>
+            const AuthPage(),
+      ),
       GoRoute(
         path: initScreen,
         builder: (BuildContext context, GoRouterState state) =>
@@ -132,11 +140,11 @@ class AppRoutes {
         builder: (BuildContext context, GoRouterState state) =>
             const TranscriptionScreen(),
       ),
-      // GoRoute(
-      //   path: profileEditScreen,
-      //   builder: (BuildContext context, GoRouterState state) =>
-      //    ProfileEditScreen(),
-      // ),
+      GoRoute(
+        path: userProfileScreen,
+        builder: (BuildContext context, GoRouterState state) =>
+            UserProfileScreen(),
+      ),
     ],
   );
 }

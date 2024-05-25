@@ -30,7 +30,7 @@ class VoiceRecognitionProvider extends ChangeNotifier {
       if (available) {
         isListening = true;
         speech.listen(
-          localeId: 'ar',
+          localeId: 'en',
           onResult: (result) {
             _currentText = result.recognizedWords;
             notifyListeners();
