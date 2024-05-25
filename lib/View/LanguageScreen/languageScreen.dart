@@ -232,7 +232,8 @@ class _LanguageScreenState extends State<LanguageScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                  "${"lbl_welcome_user".tr(context)} ${provider.userProfile!.name}",
+                  "${"lbl_welcome_user".tr(context)} ${provider.userProfile?.name}" ??
+                      '',
                   style: CustomTextStyles.titleLargeGray200e5),
             ],
           ),

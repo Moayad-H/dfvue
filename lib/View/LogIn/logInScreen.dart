@@ -295,7 +295,7 @@ class LogInScreen extends StatelessWidget {
         // onPressed: onTapImgCdddfOne(context),
         onPressed: () async {
           await provider.logIn(context);
-          await ProfileProvider().loadUserProfile();
+
           GoRouter.of(context).go(AppRoutes.authPage);
         },
       ),
