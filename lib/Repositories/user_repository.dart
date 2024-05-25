@@ -24,7 +24,17 @@ class UserProfileService {
     if (doc.exists) {
       return UserProfile.fromMap(doc.data() as Map<String, dynamic>);
     }
+
     return null;
+  }
+
+  Future<UserProfile?> updateUserProfile(doc) async {
+    await FirebaseFirestore.instance
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.email)
+        .update(doc);
+
+    return UserProfile.fromMap(doc as Map<String, dynamic>);
   }
   /*Future<UserProfile?> getUserProfile(String uid) async {
     DocumentSnapshot doc = await _usersCollection.doc(uid).get();
