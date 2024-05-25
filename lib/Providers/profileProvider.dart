@@ -16,13 +16,17 @@ class ProfileProvider with ChangeNotifier {
   bool isLoading = false;
   final UserProfileService _userProfileService = UserProfileService();
   UserProfile? _userProfile;
+  TextEditingController nameController = TextEditingController();
 
+  TextEditingController emailController = TextEditingController();
   UserProfile? get userProfile => _userProfile;
 
-  Future<void> loadUserProfile(String uid) async {
+  Future<void> loadUserProfile() async {
     isLoading = true;
     notifyListeners();
-    _userProfile = await _userProfileService.getUserProfile(uid);
+    _userProfile = await _userProfileService.getUserProfile();
+    nameController.text = _userProfile!.name;
+    emailController.text = _userProfile!.email;
     log(_userProfile!.email.toString());
     isLoading = false;
     notifyListeners();

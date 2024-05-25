@@ -10,20 +10,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 // Import the User model
 import 'dart:convert';
 
-class SignupProvider with ChangeNotifier {
+class LogInProvider with ChangeNotifier {
   // UserModel? _currentUser;
   // User? get currentUser => _currentUser;
   bool isLoading = false;
-  final TextEditingController nameController = TextEditingController();
+
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController phoneNumberController = TextEditingController();
 
-  final TextEditingController spokenLanguageController =
-      TextEditingController();
-
-  final TextEditingController subtitleLanguageController =
-      TextEditingController();
+  final CollectionReference _usersCollection =
+      FirebaseFirestore.instance.collection('users');
 
   final AuthService authService = AuthService();
   final UserProfileService userProfileService = UserProfileService();
@@ -79,50 +75,32 @@ class SignupProvider with ChangeNotifier {
   // }
   final formKey = GlobalKey<FormState>();
 
-  Future<void> signUp(context) async {
+  Future<void> logIn(BuildContext context) async {
     showDialog(
         context: context,
-        builder: (context) => const CircularProgressIndicator());
+        builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ));
 
     try {
-      User? user = await authService.signUpWithEmailAndPassword(
-        emailController.text,
-        passwordController.text,
-      );
-      createUserDocument(user);
+      await authService.signInWithEmailAndPassword(
+          emailController.text, passwordController.text);
+      if (context.mounted && FirebaseAuth.instance.currentUser == null) {
+        GoRouter.of(context).pop();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Error, Check your credentials')),
+        );
+      } else {
+        GoRouter.of(context).pop();
+        const SnackBar(content: Text('Logged In'));
+        GoRouter.of(context).go(AppRoutes.authPage);
+      }
+      //GoRouter.of(context).go(AppRoutes.authPage);
     } on FirebaseAuthException catch (e) {
       GoRouter.of(context).pop();
-    }
-    // if (user != null) {
-    //   UserProfile userProfile = UserProfile(
-    //     uid: user.uid,
-    //     name: nameController.text,
-    //     email: emailController.text,
-    //     password: passwordController.text,
-    //   );
-    //   await userProfileService.createUserProfile(userProfile);
-
-    isLoading = false;
-    notifyListeners();
-    SnackBar(content: Text('Success'));
-    // Navigate to home screen or profile screen
-    GoRouter.of(context).push(AppRoutes.logInScreen);
-    // } else {
-    //   isLoading = false;
-    //   notifyListeners();
-    //   // Show error message
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     SnackBar(content: Text('Failed to sign up')),
-    //   );
-    // }
-  }
-
-  Future<void> createUserDocument(User? user) async {
-    if (user != null) {
-      await FirebaseFirestore.instance.collection('users').doc(user.email).set({
-        'email': user.email,
-        'name': nameController.text,
-      });
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.code)),
+      );
     }
   }
 }

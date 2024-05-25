@@ -1,4 +1,5 @@
 import 'package:dfvue/Providers/SignUpProvider.dart';
+import 'package:dfvue/Providers/logInProvider.dart';
 import 'package:dfvue/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dfvue/app_export.dart';
@@ -20,7 +21,7 @@ class LogInScreen extends StatelessWidget {
       child: Scaffold(
         backgroundColor: theme.colorScheme.primary,
         resizeToAvoidBottomInset: false,
-        body: Consumer<SignupProvider>(
+        body: Consumer<LogInProvider>(
           builder: (context, provider, child) => Form(
             key: _formKey,
             child: SizedBox(
@@ -126,8 +127,8 @@ class LogInScreen extends StatelessWidget {
                                         ),
                                         child: CustomTextFormField(
                                           autofocus: false,
-                                          controller: provider.nameController,
-                                          hintText: "Enter Your User Name",
+                                          controller: provider.emailController,
+                                          hintText: "Enter Your Email",
                                           alignment: Alignment.center,
                                           prefix: Container(
                                             margin: EdgeInsets.fromLTRB(
@@ -232,7 +233,7 @@ class LogInScreen extends StatelessWidget {
                                       ),
                                     ),
                                     SizedBox(height: 50.v),
-                                    _buildLogIn(context),
+                                    _buildLogIn(context, provider),
                                     SizedBox(height: 15.v),
                                     Padding(
                                       padding: EdgeInsets.only(
@@ -313,7 +314,7 @@ class LogInScreen extends StatelessWidget {
   }
 
   /// Section Widget
-  Widget _buildLogIn(BuildContext context) {
+  Widget _buildLogIn(BuildContext context, LogInProvider provider) {
     return SizedBox(
       height: 151.v,
       width: 323.h,
@@ -344,7 +345,7 @@ class LogInScreen extends StatelessWidget {
             width: 200.h,
             alignment: Alignment.topRight,
             onTap: () {
-              onTapImgCdddfOne(context);
+              provider.logIn(context);
             },
           ),
         ],

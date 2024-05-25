@@ -1,4 +1,5 @@
 import 'package:dfvue/Providers/SignUpProvider.dart';
+import 'package:dfvue/Providers/logInProvider.dart';
 import 'package:dfvue/Providers/profileProvider.dart';
 import 'package:dfvue/Providers/theme_provider.dart';
 import 'package:dfvue/Providers/voice_recognition_provider.dart';
@@ -25,6 +26,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => VoiceRecognitionProvider()),
         ChangeNotifierProvider(create: (_) => themeProvider),
+        ChangeNotifierProvider(create: (_) => LogInProvider()),
         ChangeNotifierProvider(create: (_) => SignupProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
       ],

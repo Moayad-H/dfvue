@@ -56,8 +56,7 @@ class StartScreen extends StatelessWidget {
                               alignment: Alignment.topRight,
                               margin: EdgeInsets.only(right: 11.h),
                               onTap: () {
-                                value.loadUserProfile(
-                                    'id1');
+                                value.loadUserProfile();
                                 GoRouter.of(context).push(
                                   AppRoutes.userProfileScreen,
                                 );

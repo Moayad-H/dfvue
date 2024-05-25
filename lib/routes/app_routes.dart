@@ -1,3 +1,4 @@
+import 'package:dfvue/View/AuthPage/auth.dart';
 import 'package:dfvue/View/InitialScreen/initialScreen.dart';
 import 'package:dfvue/View/LanguageScreen/languageScreen.dart';
 import 'package:dfvue/View/LogIn/logInScreen.dart';
@@ -10,6 +11,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 class AppRoutes {
+  static const String authPage = '/';
   static const String signUpScreen = '/sign_up_screen';
 
   static const String transcriptionScreen = '/transcription';
@@ -43,7 +45,7 @@ class AppRoutes {
 
   static const String editFontsPage = '/edit_fonts_page';
 
-  static const String initScreen = '/';
+  static const String initScreen = '/init_screen';
 
   static const String otpVerifcationScreen = '/otp_verifcation_screen';
 
@@ -76,10 +78,15 @@ class AppRoutes {
   //     };
   static var globalNavKey = GlobalKey<NavigatorState>();
   static final router = GoRouter(
-    initialLocation: initScreen,
+    initialLocation: authPage,
     debugLogDiagnostics: true,
     navigatorKey: globalNavKey,
     routes: <RouteBase>[
+      GoRoute(
+        path: authPage,
+        builder: (BuildContext context, GoRouterState state) =>
+            const AuthPage(),
+      ),
       GoRoute(
         path: initScreen,
         builder: (BuildContext context, GoRouterState state) =>
