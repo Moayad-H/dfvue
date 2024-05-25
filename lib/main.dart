@@ -20,7 +20,9 @@ void main() async {
   await Firebase.initializeApp();
   final appProvider = AppProvider(ThemeData.light());
   await appProvider.loadThemeFromPrefs();
-  await ProfileProvider().loadUserProfile();
+  try {
+    await ProfileProvider().loadUserProfile();
+  } catch (e) {}
 
   runApp(
     MultiProvider(

@@ -122,7 +122,7 @@ class SignupProvider with ChangeNotifier {
 
   Future<void> createUserDocument(User? user) async {
     if (user != null) {
-      await FirebaseFirestore.instance.collection('users').doc(user.email).set({
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
         'email': user.email,
         'name': nameController.text,
       });

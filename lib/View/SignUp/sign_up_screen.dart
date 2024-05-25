@@ -50,6 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               CustomTextFormField(
+                                autofocus: false,
                                 controller: profileProvider.nameController,
                                 hintText: "lbl_enter_your_name".tr(context),
                                 textStyle: const TextStyle(
@@ -121,7 +122,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     CustomElevatedButton(
-                                      onPressed: () => profileProvider.signUp,
+                                      onPressed: () =>
+                                          profileProvider.signUp(context),
                                       height: 53.v,
                                       width: 318.h,
                                       text: "lbl_sign_up".tr(context),
@@ -182,52 +184,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ),
                         ),
                         SizedBox(height: 87.v),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            CircleAvatar(
-                              radius: 23.h,
-                              backgroundColor: appTheme.blueGray100,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: appTheme.gray50001.withOpacity(0.7),
-                                    width: 1.h,
-                                  ),
-                                  borderRadius: BorderRadius.circular(23.h),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 19.h),
-                            CircleAvatar(
-                              radius: 23.h,
-                              backgroundColor: appTheme.blueGray100,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: appTheme.gray50001.withOpacity(0.7),
-                                    width: 1.h,
-                                  ),
-                                  borderRadius: BorderRadius.circular(23.h),
-                                ),
-                              ),
-                            ),
-                            SizedBox(width: 19.h),
-                            CircleAvatar(
-                              radius: 23.h,
-                              backgroundColor: appTheme.blueGray100,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: appTheme.gray50001.withOpacity(0.7),
-                                    width: 1.h,
-                                  ),
-                                  borderRadius: BorderRadius.circular(23.h),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
                       ],
                     ),
                   ),
