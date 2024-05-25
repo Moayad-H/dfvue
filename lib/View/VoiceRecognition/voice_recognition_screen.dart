@@ -114,7 +114,7 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                                   children: [
                                     IconButton(
                                       onPressed: () {
-                                        provider.clearCurrentText();
+                                        provider.clearCurrentText(context);
                                       },
                                       icon: const Icon(
                                           Icons.delete_outline_outlined),

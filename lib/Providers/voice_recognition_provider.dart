@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/models/transcriptionModel.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
@@ -113,8 +114,8 @@ class VoiceRecognitionProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  void clearCurrentText() {
-    _currentText = 'Press the button and start speaking';
+  void clearCurrentText(BuildContext context) {
+    "lbl_speaking".tr(context);
     notifyListeners();
   }
 }
