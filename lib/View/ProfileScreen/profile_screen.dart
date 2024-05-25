@@ -81,7 +81,7 @@ class UserProfileScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  _buildUpdate(context),
+                  _buildUpdate(context, provider),
                   SizedBox(height: 65.v),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
@@ -163,8 +163,9 @@ class UserProfileScreen extends StatelessWidget {
     ]);
   }
 
-  Widget _buildUpdate(BuildContext context) {
+  Widget _buildUpdate(BuildContext context, ProfileProvider provider) {
     return CustomElevatedButton(
+      onPressed: () => provider.updateProfile(context),
       height: 40.v,
       text: "Update",
       margin: EdgeInsets.only(left: 54.h, right: 53.h),

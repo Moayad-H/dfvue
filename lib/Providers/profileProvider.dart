@@ -31,4 +31,25 @@ class ProfileProvider with ChangeNotifier {
     isLoading = false;
     notifyListeners();
   }
+
+  Future<void> updateProfile(context) async {
+    showDialog(
+        context: context,
+        builder: (context) => const CircularProgressIndicator());
+
+    isLoading = true;
+    notifyListeners();
+    try {
+      _userProfile = await _userProfileService.updateUserProfile(
+          {'email': emailController.text, 'name': nameController.text});
+      FirebaseAuth.instance.currentUser!
+          .verifyBeforeUpdateEmail(emailController.text);
+      GoRouter.of(context).pop();
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text(
+              'We have sent an email to the provided email address, please verify to complete update')));
+    } on FirebaseAuthException catch (e) {
+      SnackBar(content: Text(e.code));
+    }
+  }
 }
