@@ -1,5 +1,7 @@
 import 'dart:developer';
 import 'package:dfvue/localization/app_localization.dart';
+import 'package:dfvue/theme/app_style.dart';
+import 'package:dfvue/theme/theme_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
@@ -54,7 +56,7 @@ class InitialScreen extends StatelessWidget {
                     text: "lbl_login".tr(context),
                     buttonStyle: CustomButtonStyles.outlineLime,
                     buttonTextStyle:
-                        const TextStyle(color: Colors.black, fontSize: 20),
+                        const TextStyle(color: AppStyle.black, fontSize: 20),
                     onPressed: () {
                       GoRouter.of(context).push(AppRoutes.logInScreen);
                       log('Navigated to Log In Screen');

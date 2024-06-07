@@ -32,7 +32,7 @@ final Map<String, String> enUs = {
       "which device should be used as the audio source and output",
 
   // ;anguage Screen
-  "lbl_spoken_language": "SPOKEN LANGUAGE",
+  "lbl_spoken_language": "Select Spoken Language",
   "msg_before_you_start2": "Before you start , lets set up your language.",
   "msg_select_app_language": "Select app language",
   "msg_subtitle_language": "Select subtitle language",

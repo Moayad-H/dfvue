@@ -1,6 +1,9 @@
 import 'package:dfvue/Providers/app_provider.dart';
+import 'package:dfvue/Providers/settingsProvider.dart';
 import 'package:dfvue/View/LanguageScreen/languageScreen.dart';
 import 'package:dfvue/View/VoiceRecognition/SettingsBottomSheet/changeLanguageSheet.dart';
+import 'package:dfvue/View/VoiceRecognition/SettingsBottomSheet/change_color_sheet.dart';
+import 'package:dfvue/View/VoiceRecognition/SettingsBottomSheet/change_font_sheet.dart';
 import 'package:dfvue/app_export.dart';
 import 'package:dfvue/localization/app_localization.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +17,14 @@ class Settingssheet extends StatefulWidget {
 }
 
 class _SettingssheetState extends State<Settingssheet> {
+  int _selectedScreenIndex = 0;
+
+  void _onIconPressed(int index) {
+    setState(() {
+      _selectedScreenIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
@@ -23,8 +34,8 @@ class _SettingssheetState extends State<Settingssheet> {
         heightFactor: 0.75,
         child: Scaffold(
           backgroundColor: theme.colorScheme.primary,
-          body: Consumer<AppProvider>(
-            builder: (context, provider, child) {
+          body: Consumer2<AppProvider, SettingsProvider>(
+            builder: (context, provider, isChosen, child) {
               return Container(
                 padding: const EdgeInsets.all(12.0),
                 child: Column(
@@ -36,16 +47,21 @@ class _SettingssheetState extends State<Settingssheet> {
                           children: [
                             IconButton(
                                 color: Colors.white,
-                                onPressed: () {},
+                                onPressed: () {
+                                  _onIconPressed(0);
+                                  isChosen.selectLanguage();
+                                },
                                 icon: const Icon(Icons.settings_outlined),
                                 isSelected: null,
                                 iconSize: iconSize,
                                 style: IconButton.styleFrom(
                                   shape: const RoundedRectangleBorder(),
-                                  backgroundColor: Colors.white30,
+                                  backgroundColor: isChosen.LanguageButton
+                                      ? Colors.white30
+                                      : null,
                                 )),
                             Text(
-                              "Settings",
+                              "lbl_settings".tr(context),
                               style: TextStyle(
                                   color: Colors.white, fontSize: textSize),
                             )
@@ -54,14 +70,22 @@ class _SettingssheetState extends State<Settingssheet> {
                         Column(
                           children: [
                             IconButton(
-                              color: Colors.white,
-                              onPressed: () {},
-                              icon: const Icon(Icons.color_lens),
-                              isSelected: null,
-                              iconSize: iconSize,
-                            ),
+                                color: Colors.white,
+                                onPressed: () {
+                                  _onIconPressed(1);
+                                  isChosen.selectColorButton();
+                                },
+                                icon: const Icon(Icons.color_lens),
+                                isSelected: null,
+                                iconSize: iconSize,
+                                style: IconButton.styleFrom(
+                                  shape: const RoundedRectangleBorder(),
+                                  backgroundColor: isChosen.colorButton
+                                      ? Colors.white30
+                                      : null,
+                                )),
                             Text(
-                              "Colors",
+                              "lbl_colors".tr(context),
                               style: TextStyle(
                                   color: Colors.white, fontSize: textSize),
                             )
@@ -70,14 +94,22 @@ class _SettingssheetState extends State<Settingssheet> {
                         Column(
                           children: [
                             IconButton(
-                              color: Colors.white,
-                              onPressed: () {},
-                              icon: const Icon(Icons.text_fields_outlined),
-                              isSelected: null,
-                              iconSize: iconSize,
-                            ),
+                                color: Colors.white,
+                                onPressed: () {
+                                  _onIconPressed(2);
+                                  isChosen.selectFontButton();
+                                },
+                                icon: const Icon(Icons.text_fields_outlined),
+                                isSelected: null,
+                                iconSize: iconSize,
+                                style: IconButton.styleFrom(
+                                  shape: const RoundedRectangleBorder(),
+                                  backgroundColor: isChosen.fontButton
+                                      ? Colors.white30
+                                      : null,
+                                )),
                             Text(
-                              "Fonts",
+                              "lbl_fonts".tr(context),
                               style: TextStyle(
                                   color: Colors.white, fontSize: textSize),
                             )
@@ -93,8 +125,11 @@ class _SettingssheetState extends State<Settingssheet> {
                       height: 6,
                     ),
                     Expanded(
-                      child: ChangeLanguageSheet(),
-                    )
+                        child: _selectedScreenIndex == 0
+                            ? ChangeLanguageSheet()
+                            : _selectedScreenIndex == 1
+                                ? ChangeColorSheet()
+                                : ChangeFontSheet())
                   ],
                 ),
               );

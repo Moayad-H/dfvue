@@ -56,14 +56,16 @@ class _LanguageScreenState extends State<LanguageScreen> {
                   padding: EdgeInsets.only(left: 18.h),
                   child: Text(
                     "msg_what_language_the".tr(context),
-                    style: TextStyle(fontSize: 15, color: Colors.black),
+                    style: TextStyle(
+                        fontSize: 15, color: theme.colorScheme.onPrimary),
                   ),
                 ),
                 SizedBox(height: 13.v),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text('msg_subtitle_language'.tr(context),
-                      style: TextStyle(fontSize: 20, color: Colors.black)),
+                      style: TextStyle(
+                          fontSize: 20, color: theme.colorScheme.onPrimary)),
                 ),
                 SizedBox(height: 5.v),
                 Row(

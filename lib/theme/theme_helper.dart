@@ -102,6 +102,142 @@ class ThemeHelper {
     );
   }
 
+  ThemeData lightThemeData() {
+    var colorScheme = ColorSchemes.primaryColorScheme;
+    return ThemeData(
+      visualDensity: VisualDensity.standard,
+      colorScheme: colorScheme,
+      textTheme: TextThemes.textTheme(colorScheme),
+      scaffoldBackgroundColor: Colors.white,
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          side: BorderSide(
+            color: appTheme.greenA200,
+            width: 1,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          visualDensity: const VisualDensity(
+            vertical: -4,
+            horizontal: -4,
+          ),
+          padding: EdgeInsets.zero,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          shadowColor: colorScheme.errorContainer.withOpacity(0.25),
+          elevation: 4,
+          visualDensity: const VisualDensity(
+            vertical: -4,
+            horizontal: -4,
+          ),
+          padding: EdgeInsets.zero,
+        ),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateColor.resolveWith((states) {
+          if (states.contains(MaterialState.selected)) {
+            return colorScheme.primary;
+          }
+          return colorScheme.onSurface;
+        }),
+        side: BorderSide(
+          color: colorScheme.primary,
+          width: 1,
+        ),
+        visualDensity: const VisualDensity(
+          vertical: -4,
+          horizontal: -4,
+        ),
+      ),
+      dividerTheme: DividerThemeData(
+        thickness: 1,
+        space: 1,
+        color: Colors.grey[300]!,
+      ),
+    );
+  }
+
+  ThemeData darkThemeData() {
+    var colorScheme = ColorScheme.dark(
+      primary: Color(0XFF25BF6C),
+      primaryContainer: Color(0XCC272626),
+      secondaryContainer: Color(0X7525BF6C),
+      errorContainer: Color(0X75000000),
+      onError: Color(0XE526C06D),
+      onErrorContainer: Color(0XFF2F2F2F),
+      onPrimary: Color.fromARGB(255, 243, 241, 241),
+      onPrimaryContainer: Color(0XF4A5F275),
+    );
+
+    return ThemeData(
+      visualDensity: VisualDensity.standard,
+      colorScheme: colorScheme,
+      textTheme: TextThemes.textTheme(colorScheme),
+      scaffoldBackgroundColor: Color(0XFF171717),
+      outlinedButtonTheme: OutlinedButtonThemeData(
+        style: OutlinedButton.styleFrom(
+          backgroundColor: Colors.transparent,
+          side: BorderSide(
+            color: appTheme.greenA200,
+            width: 1,
+          ),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ),
+          visualDensity: const VisualDensity(
+            vertical: -4,
+            horizontal: -4,
+          ),
+          padding: EdgeInsets.zero,
+        ),
+      ),
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: colorScheme.primary,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          shadowColor: colorScheme.errorContainer.withOpacity(0.25),
+          elevation: 4,
+          visualDensity: const VisualDensity(
+            vertical: -4,
+            horizontal: -4,
+          ),
+          padding: EdgeInsets.zero,
+        ),
+      ),
+      checkboxTheme: CheckboxThemeData(
+        fillColor: MaterialStateColor.resolveWith((states) {
+          if (states.contains(MaterialState.selected)) {
+            return colorScheme.primary;
+          }
+          return colorScheme.onSurface;
+        }),
+        side: BorderSide(
+          color: colorScheme.primary,
+          width: 1,
+        ),
+        visualDensity: const VisualDensity(
+          vertical: -4,
+          horizontal: -4,
+        ),
+      ),
+      dividerTheme: DividerThemeData(
+        thickness: 1,
+        space: 1,
+        color: Colors.grey[800]!,
+      ),
+    );
+  }
+
   /// Returns the primary colors for the current theme.
   PrimaryColors themeColor() => _getThemeColors();
 
@@ -242,6 +378,7 @@ class PrimaryColors {
 
   // White
   Color get whiteA700 => Color(0XFFFFFFFF);
+  static ThemeData darkTheme = ThemeData.dark(useMaterial3: true);
 }
 
 PrimaryColors get appTheme => ThemeHelper().themeColor();

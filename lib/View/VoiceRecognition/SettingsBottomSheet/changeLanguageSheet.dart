@@ -21,7 +21,7 @@ class _ChangeLanguageSheetState extends State<ChangeLanguageSheet> {
         selectedSubtitle = language.locale!.languageCode;
         selectedSpoken = language.spokenLocale!.languageCode;
         return Container(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(6.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
             color: theme.colorScheme.primaryContainer.withOpacity(0.3),
@@ -50,7 +50,7 @@ class _ChangeLanguageSheetState extends State<ChangeLanguageSheet> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('msg_subtitle_language'.tr(context),
+                      Text("lbl_spoken_language".tr(context),
                           style: const TextStyle(
                               fontSize: 16, color: Colors.white)),
                       DropdownButton<String>(

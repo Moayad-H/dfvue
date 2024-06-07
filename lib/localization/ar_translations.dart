@@ -28,7 +28,7 @@ final Map<String, String> arSa = {
   "msg_which_device_should": "ما هو الجهاز الذي يجب استخدامه كمصدر ومخرج الصوت",
 
   // شاشة اللغة
-  "lbl_spoken_language": "اللغة المحكية",
+  "lbl_spoken_language": "اختر اللغة التحدث",
   "msg_before_you_start2": "قبل أن تبدأ، دعنا نضبط اللغة.",
   "msg_select_app_language": "اختر لغة التطبيق",
   "msg_subtitle_language": "اختر لغة الترجمة",

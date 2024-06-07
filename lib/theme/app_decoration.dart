@@ -5,28 +5,28 @@ import 'package:dfvue/app_export.dart';
 class AppDecoration {
   // Fill decorations
   static BoxDecoration get fillGray => BoxDecoration(
-        color: appTheme.gray20002,
+        color: appTheme.gray800, // Darkened gray color
       );
   static BoxDecoration get fillGray10001 => BoxDecoration(
-        color: appTheme.gray10001,
+        color: appTheme.gray700, // Darkened gray color
       );
   static BoxDecoration get fillGray20001 => BoxDecoration(
-        color: appTheme.gray20001,
+        color: appTheme.gray700, // Darkened gray color
       );
   static BoxDecoration get fillGray30099 => BoxDecoration(
-        color: appTheme.gray30099,
+        color: appTheme.gray500, // Darkened gray color
       );
   static BoxDecoration get fillGray800 => BoxDecoration(
-        color: appTheme.gray800,
+        color: appTheme.gray200, // Lighter gray color
       );
   static BoxDecoration get fillOnPrimary => BoxDecoration(
-        color: theme.colorScheme.onPrimary,
+        color: theme.colorScheme.primary,
       );
   static BoxDecoration get fillPrimary => BoxDecoration(
         color: theme.colorScheme.primary,
       );
   static BoxDecoration get fillWhiteA => BoxDecoration(
-        color: appTheme.whiteA700,
+        color: appTheme.whiteA700, // White color
       );
 
   // Gradient decorations

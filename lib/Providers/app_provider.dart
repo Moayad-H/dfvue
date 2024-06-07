@@ -5,12 +5,20 @@ class AppProvider extends ChangeNotifier {
   ThemeData _themeData;
 
   AppProvider(this._themeData);
-
+  ThemeMode themeSelected = ThemeMode.light;
   ThemeData get themeData => _themeData;
   static Locale _locale = Locale('en');
   static Locale _spokenLocale = Locale('en');
   Locale? get spokenLocale => _spokenLocale;
   Locale? get locale => _locale;
+  void changeThemeMode(String selected) {
+    if (selected.contains('dark')) {
+      themeSelected = ThemeMode.dark;
+    } else {
+      themeSelected = ThemeMode.light;
+    }
+  }
+
   void setLocale(Locale locale) {
     _locale = locale;
     notifyListeners();

@@ -3,6 +3,7 @@ import 'package:dfvue/Providers/SignUpProvider.dart';
 import 'package:dfvue/Providers/logInProvider.dart';
 import 'package:dfvue/Providers/profileProvider.dart';
 import 'package:dfvue/Providers/app_provider.dart';
+import 'package:dfvue/Providers/settingsProvider.dart';
 import 'package:dfvue/Providers/voice_recognition_provider.dart';
 import 'package:dfvue/app_export.dart';
 import 'package:dfvue/localization/app_localization.dart';
@@ -34,6 +35,7 @@ void main() async {
         ChangeNotifierProvider(create: (_) => LogInProvider()),
         ChangeNotifierProvider(create: (_) => SignupProvider()),
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
+        ChangeNotifierProvider(create: (_) => SettingsProvider()),
       ],
       child: DevicePreview(
         enabled: !kReleaseMode,
@@ -54,7 +56,12 @@ class MyApp extends StatelessWidget {
         // routeInformationParser: AppRoutes.router.routeInformationParser,
         // routeInformationProvider: AppRoutes.router.routeInformationProvider,
         routerConfig: AppRoutes.router,
-        theme: theme,
+        themeMode: //
+            //ThemeMode.dark,
+            provider.themeSelected,
+        theme: ThemeHelper().lightThemeData(),
+        darkTheme: ThemeHelper().darkThemeData(),
+
         title: 'DfVue',
         debugShowCheckedModeBanner: false,
         localizationsDelegates: const [
