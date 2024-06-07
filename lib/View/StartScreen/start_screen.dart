@@ -161,7 +161,6 @@ class StartScreen extends StatelessWidget {
 
   /// Navigates to the voiceRecognitionScreen when the action is triggered.
   onTapThirtyNine(BuildContext context, VoiceRecognitionProvider provider) {
-    provider.initialText("lbl_speaking".tr(context));
     GoRouter.of(context).push(AppRoutes.voiceRecognitionScreen);
   }
 

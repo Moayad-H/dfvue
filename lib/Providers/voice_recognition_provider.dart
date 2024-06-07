@@ -9,7 +9,7 @@ import 'package:speech_to_text/speech_to_text.dart' as stt;
 class VoiceRecognitionProvider extends ChangeNotifier {
   late stt.SpeechToText speech;
   bool isListening = false;
-  String? _currentText;
+  String? _currentText = '';
   List<TranscriptionModel> _textList = [];
   String _saveStatusMessage = '';
 
@@ -21,12 +21,8 @@ class VoiceRecognitionProvider extends ChangeNotifier {
   String? get currentText => _currentText;
   List<TranscriptionModel> get textList => _textList;
   String get saveStatusMessage => _saveStatusMessage;
-  void initialText(text) {
-    _currentText = text;
-    notifyListeners();
-  }
 
-  void listen(Locale? locale, text) async {
+  void listen(Locale? locale, String text) async {
     if (!isListening) {
       bool available = await speech.initialize(
         onStatus: (val) => print('onStatus: $val'),
@@ -115,7 +111,7 @@ class VoiceRecognitionProvider extends ChangeNotifier {
   }
 
   void clearCurrentText(BuildContext context) {
-    "lbl_speaking".tr(context);
+    _currentText = '';
     notifyListeners();
   }
 }

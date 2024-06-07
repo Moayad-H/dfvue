@@ -1,6 +1,9 @@
+import 'dart:ui';
+
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:dfvue/Providers/app_provider.dart';
 import 'package:dfvue/Providers/voice_recognition_provider.dart';
+import 'package:dfvue/View/VoiceRecognition/settingsSheet.dart';
 import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/utils/size_utils.dart';
 import 'package:flutter/material.dart';
@@ -20,16 +23,19 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    String currentText = "lbl_speaking".tr(context);
+
     return Consumer<VoiceRecognitionProvider>(
-        builder: (context, provider, child) {
-      return SafeArea(
+      builder: (context, provider, child) {
+        return SafeArea(
           child: Consumer<AppProvider>(
-        builder: (context, language, child) => Scaffold(
-            body: Container(
-                width: double.maxFinite,
-                padding: EdgeInsets.symmetric(horizontal: 10.h, vertical: 6.v),
-                child: Column(
+            builder: (context, language, child) {
+              String? currentText = '';
+              return Scaffold(
+                body: Container(
+                  width: double.maxFinite,
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 10.h, vertical: 6.v),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       IconButton(
@@ -50,7 +56,10 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                             reverse: true,
                             child: Container(
                                 padding: const EdgeInsets.all(10),
-                                child: Text(provider.currentText!,
+                                child: Text(
+                                    provider.currentText!.isEmpty
+                                        ? "lbl_speaking".tr(context)
+                                        : provider.currentText!,
                                     maxLines: 10,
                                     overflow: TextOverflow.ellipsis,
                                     style: theme.textTheme.titleLarge)),
@@ -121,7 +130,15 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                                       iconSize: 40,
                                     ),
                                     IconButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        showModalBottomSheet(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return const Settingssheet();
+                                          },
+                                          isDismissible: true,
+                                        );
+                                      },
                                       icon: Icon(Icons.equalizer_outlined),
                                       iconSize: 40,
                                     ),
@@ -146,9 +163,15 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                                   ]),
                             ]),
                       ),
-                    ]))),
-      ));
-    });
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        );
+      },
+    );
   }
 }
 
