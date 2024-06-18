@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/models/transcriptionModel.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'package:speech_to_text/speech_to_text_provider.dart';
 
 class VoiceRecognitionProvider extends ChangeNotifier {
   late stt.SpeechToText speech;
@@ -12,7 +14,7 @@ class VoiceRecognitionProvider extends ChangeNotifier {
   String? _currentText = '';
   List<TranscriptionModel> _textList = [];
   String _saveStatusMessage = '';
-
+  RecorderController controller = RecorderController();
   VoiceRecognitionProvider() {
     speech = stt.SpeechToText();
     readFromFile();
@@ -24,19 +26,31 @@ class VoiceRecognitionProvider extends ChangeNotifier {
 
   void listen(Locale? locale, String text) async {
     if (!isListening) {
-      bool available = await speech.initialize(
-        onStatus: (val) => print('onStatus: $val'),
-        onError: (val) => print('onError: $val'),
-      );
+      isListening = true;
+      notifyListeners();
+      bool available = await speech.initialize(onStatus: (val) {
+        print('onStatus: $val');
+      }, onError: (val) {
+        print('onError: $val');
+        isListening = false;
+        controller.stop();
+        notifyListeners();
+      });
+
       if (available) {
-        isListening = true;
-        speech.listen(
+        await speech.listen(
           localeId: locale!.languageCode,
           onResult: (result) {
             _currentText = result.recognizedWords;
             notifyListeners();
+            if (speech.isNotListening) {
+              speech.stop();
+              isListening = false;
+              notifyListeners();
+            }
           },
         );
+        controller.record();
       }
     } else {
       speech.stop();

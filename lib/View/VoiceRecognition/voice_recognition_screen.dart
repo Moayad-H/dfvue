@@ -1,5 +1,4 @@
-import 'dart:ui';
-
+import 'package:audio_waveforms/audio_waveforms.dart';
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:dfvue/Providers/app_provider.dart';
 import 'package:dfvue/Providers/voice_recognition_provider.dart';
@@ -10,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:dfvue/app_export.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class VoiceRecognitionScreen extends StatefulWidget {
   const VoiceRecognitionScreen({super.key});
@@ -76,13 +74,63 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                             children: [
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  AnimatedSwitcher(
+                                    duration: const Duration(milliseconds: 200),
+                                    child: provider.isListening
+                                        ? Text(
+                                            "Listening...",
+                                            style: TextStyle(
+                                                color:
+                                                    theme.colorScheme.primary,
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        : null,
+                                  ),
+                                  // AnimatedSwitcher(
+                                  //   duration: const Duration(milliseconds: 200),
+                                  //   child: provider.isListening
+                                  //       ? AudioWaveforms(
+                                  //           size: Size(
+                                  //               MediaQuery.of(context)
+                                  //                       .size
+                                  //                       .width /
+                                  //                   2,
+                                  //               50),
+                                  //           recorderController:
+                                  //               provider.controller,
+                                  //           waveStyle: const WaveStyle(
+                                  //             waveColor: Colors.white,
+                                  //             extendWaveform: true,
+                                  //             showMiddleLine: false,
+                                  //           ),
+                                  //           decoration: BoxDecoration(
+                                  //             borderRadius:
+                                  //                 BorderRadius.circular(12.0),
+                                  //             color: const Color(0xFF1E1B26),
+                                  //           ),
+                                  //           padding:
+                                  //               const EdgeInsets.only(left: 18),
+                                  //           margin: const EdgeInsets.symmetric(
+                                  //               horizontal: 15),
+                                  //         )
+                                  //       : null,
+                                  // ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
                                     height: 51.v,
                                     width: 62.h,
                                     decoration: BoxDecoration(
-                                        color: provider.speech.isListening
+                                        color: provider.isListening
                                             ? theme.colorScheme.primary
                                             : Colors.white,
                                         borderRadius:
@@ -96,7 +144,7 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                                               offset: const Offset(0, 1))
                                         ]),
                                     child: AvatarGlow(
-                                      animate: provider.speech.isListening,
+                                      animate: provider.isListening,
                                       glowColor: theme.colorScheme.primary,
                                       duration:
                                           const Duration(milliseconds: 2000),
@@ -110,8 +158,11 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                                               ? ImageConstant.imgVoiceSearch32
                                               : ImageConstant.imgVoiceSearch4,
                                         ),
-                                        onPressed: () => provider.listen(
-                                            language.spokenLocale, currentText),
+                                        onPressed: () async {
+                                          provider.listen(language.spokenLocale,
+                                              currentText);
+                                          //provider.clearCurrentText(context);
+                                        },
                                       ),
                                     ),
                                   )
