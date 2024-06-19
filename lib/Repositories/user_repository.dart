@@ -28,6 +28,10 @@ class UserProfileService {
     return null;
   }
 
+  Future<UserProfile?> resetUserPassword(doc) async {
+    return UserProfile.fromMap(doc as Map<String, dynamic>);
+  }
+
   Future<UserProfile?> updateUserProfile(doc) async {
     await FirebaseFirestore.instance
         .collection('users')

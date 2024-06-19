@@ -24,12 +24,12 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
 
     return Consumer<VoiceRecognitionProvider>(
       builder: (context, provider, child) {
-        return SafeArea(
-          child: Consumer<AppProvider>(
-            builder: (context, language, child) {
-              String? currentText = '';
-              return Scaffold(
-                body: Container(
+        return Consumer<AppProvider>(
+          builder: (context, language, child) {
+            String? currentText = '';
+            return Scaffold(
+              body: SafeArea(
+                child: Container(
                   width: double.maxFinite,
                   padding:
                       EdgeInsets.symmetric(horizontal: 10.h, vertical: 6.v),
@@ -217,9 +217,9 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                     ],
                   ),
                 ),
-              );
-            },
-          ),
+              ),
+            );
+          },
         );
       },
     );

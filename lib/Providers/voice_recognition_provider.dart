@@ -50,7 +50,7 @@ class VoiceRecognitionProvider extends ChangeNotifier {
             }
           },
         );
-        controller.record();
+        //controller.record();
       }
     } else {
       speech.stop();

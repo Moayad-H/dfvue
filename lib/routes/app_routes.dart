@@ -1,4 +1,5 @@
 import 'package:dfvue/View/AuthPage/auth.dart';
+import 'package:dfvue/View/ForgotPassword/forgot_password_screen.dart';
 import 'package:dfvue/View/InitialScreen/initialScreen.dart';
 import 'package:dfvue/View/LanguageScreen/languageScreen.dart';
 import 'package:dfvue/View/LogIn/logInScreen.dart';
@@ -105,11 +106,11 @@ class AppRoutes {
       //   builder: (BuildContext context, GoRouterState state) =>
       //   const OtpVerifcationScreen(),
       // ),
-      // GoRoute(
-      //   path: resetPasswordScreen,
-      //   builder: (BuildContext context, GoRouterState state) =>
-      //   const ResetPasswordScreen(),
-      // ),
+      GoRoute(
+        path: resetPasswordScreen,
+        builder: (BuildContext context, GoRouterState state) =>
+            const ForgotPasswordScreen(),
+      ),
       // GoRoute(
       //   path: checkEmailsScreen,
       //   builder: (BuildContext context, GoRouterState state) =>

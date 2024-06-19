@@ -12,38 +12,44 @@ import 'package:dfvue/widgets/custom_text_form_field.dart';
 import 'package:dfvue/app_export.dart';
 
 class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: theme.colorScheme.primary,
-        resizeToAvoidBottomInset: false,
-        body: Consumer<SignupProvider>(
-          builder: (context, profileProvider, child) => Form(
-            key: profileProvider.formKey,
-            child: profileProvider.isLoading
-                ? Center(child: CircularProgressIndicator())
-                : SingleChildScrollView(
-                    padding: EdgeInsets.symmetric(horizontal: 9.h),
+    return Scaffold(
+      backgroundColor: theme.colorScheme.primary,
+      resizeToAvoidBottomInset: false,
+      body: Consumer<SignupProvider>(
+        builder: (context, profileProvider, child) => Form(
+          key: formKey,
+          child: profileProvider.isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : SafeArea(
+                  bottom: false,
+                  child: Container(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        SizedBox(height: 87.v),
                         Text(
                           "msg_create_your_account".tr(context),
-                          style: theme.textTheme.headlineSmall,
+                          style: theme.textTheme.titleLarge!
+                              .copyWith(color: Colors.white, fontSize: 30),
                         ),
-                        SizedBox(height: 91.v),
+                        const SizedBox(
+                          height: 50,
+                        ),
+
                         Container(
                           padding: EdgeInsets.symmetric(
-                              horizontal: 18.h, vertical: 112.v),
-                          decoration: AppDecoration.fillGray.copyWith(
+                              horizontal: 20.h, vertical: 100.v),
+                          decoration: AppDecoration.fillWhiteA.copyWith(
                             borderRadius: BorderRadiusStyle.customBorderTL110,
                           ),
                           child: Column(
@@ -53,6 +59,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 autofocus: false,
                                 controller: profileProvider.nameController,
                                 hintText: "lbl_enter_your_name".tr(context),
+                                hintStyle:
+                                    TextStyle(fontSize: 16, letterSpacing: 2),
                                 textStyle: const TextStyle(
                                     color: Colors.black, fontSize: 12),
                                 prefix: Padding(
@@ -72,6 +80,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 controller: profileProvider.emailController,
                                 hintText: "lbl_email_address".tr(context),
                                 textInputType: TextInputType.emailAddress,
+                                hintStyle:
+                                    TextStyle(fontSize: 16, letterSpacing: 2),
                                 prefix: Padding(
                                     padding:
                                         EdgeInsets.symmetric(vertical: 17.v),
@@ -88,6 +98,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 autofocus: false,
                                 controller: profileProvider.passwordController,
                                 hintText: "lbl_enter_password".tr(context),
+                                hintStyle:
+                                    TextStyle(fontSize: 16, letterSpacing: 2),
                                 textInputAction: TextInputAction.done,
                                 textInputType: TextInputType.visiblePassword,
                                 obscureText: profileProvider.isObscure,
@@ -110,7 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 contentPadding:
                                     EdgeInsets.symmetric(vertical: 20.v),
                               ),
-                              SizedBox(height: 10.v),
+                              SizedBox(height: 20.v),
                               Container(
                                 decoration: BoxDecoration(
                                   color: theme.primaryColor,
@@ -137,20 +149,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               SizedBox(height: 17.v),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
                                 children: [
                                   CustomImageView(
                                     imagePath: ImageConstant.imgFacebook1,
                                     height: 25.adaptSize,
                                     width: 25.adaptSize,
                                   ),
-                                  Spacer(),
                                   CustomImageView(
                                     imagePath: ImageConstant.imgGoogle1,
                                     height: 25.adaptSize,
                                     width: 25.adaptSize,
                                   ),
-                                  Spacer(),
                                   CustomImageView(
                                     imagePath: ImageConstant.imgApple1,
                                     height: 25.adaptSize,
@@ -160,7 +171,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                               SizedBox(height: 27.v),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
                                     "msg_already_have_an".tr(context),
@@ -169,25 +180,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   ),
                                   GestureDetector(
                                     onTap: () {
-                                      GoRouter.of(context)
-                                          .push(AppRoutes.logInScreen);
+                                      GoRouter.of(context).pushReplacement(
+                                          AppRoutes.logInScreen);
                                     },
                                     child: Text(
-                                      "lbl_login".tr(context),
+                                      " ${"lbl_login".tr(context)}",
                                       style: CustomTextStyles.bodyMediumPrimary,
                                     ),
                                   ),
                                 ],
                               ),
-                              SizedBox(height: 83.v),
+                              // SizedBox(height: 83.v),
                             ],
                           ),
                         ),
-                        SizedBox(height: 87.v),
+                        // SizedBox(height: 87.v),
                       ],
                     ),
                   ),
-          ),
+                ),
         ),
       ),
     );
@@ -200,6 +211,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   /// Navigates to the logInScreen when the action is triggered.
   void onTapTxtLogin(BuildContext context) {
-    GoRouter.of(context).push(AppRoutes.logInScreen);
+    GoRouter.of(context).pushReplacement(AppRoutes.logInScreen);
   }
 }

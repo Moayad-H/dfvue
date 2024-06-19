@@ -17,10 +17,10 @@ class StartScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     return Consumer2<ProfileProvider, VoiceRecognitionProvider>(
-      builder: (context, value, voice, child) => SafeArea(
-        child: Scaffold(
-          backgroundColor: theme.colorScheme.primary,
-          body: SingleChildScrollView(
+      builder: (context, value, voice, child) => Scaffold(
+        backgroundColor: theme.colorScheme.primary,
+        body: SafeArea(
+          child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
