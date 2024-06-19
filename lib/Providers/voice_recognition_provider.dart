@@ -12,12 +12,43 @@ class VoiceRecognitionProvider extends ChangeNotifier {
   late stt.SpeechToText speech;
   bool isListening = false;
   String? _currentText = '';
+  double textSize = 20;
+  int fontWeight = 300;
+  List<int> textAlign = [1, 2, 3];
+  int textAlignIndx = 0;
   List<TranscriptionModel> _textList = [];
   String _saveStatusMessage = '';
   RecorderController controller = RecorderController();
   VoiceRecognitionProvider() {
     speech = stt.SpeechToText();
     readFromFile();
+  }
+  void switchAlign() {
+    if (textAlignIndx >= 2) {
+      textAlignIndx = 0;
+    } else {
+      textAlignIndx++;
+    }
+    notifyListeners();
+  }
+
+  void switchFontWeight() {
+    if (fontWeight >= 900) {
+      fontWeight = 300;
+    } else {
+      fontWeight += 300;
+    }
+    notifyListeners();
+  }
+
+  void increaseTextSize() {
+    textSize += 2;
+    notifyListeners();
+  }
+
+  void decreaseTextSize() {
+    textSize -= 2;
+    notifyListeners();
   }
 
   String? get currentText => _currentText;

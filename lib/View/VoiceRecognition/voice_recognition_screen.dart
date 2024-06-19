@@ -39,7 +39,7 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                       IconButton(
                           iconSize: 30,
                           onPressed: GoRouter.of(context).pop,
-                          icon: Icon(Icons.arrow_back)),
+                          icon: const Icon(Icons.arrow_back)),
                       SizedBox(height: 83.v),
                       Row(children: [
                         Container(
@@ -53,18 +53,32 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                           child: SingleChildScrollView(
                             reverse: true,
                             child: Container(
-                                padding: const EdgeInsets.all(10),
-                                child: Text(
-                                    provider.currentText!.isEmpty
-                                        ? "lbl_speaking".tr(context)
-                                        : provider.currentText!,
-                                    maxLines: 10,
-                                    overflow: TextOverflow.ellipsis,
-                                    style: theme.textTheme.titleLarge)),
+                              padding: const EdgeInsets.all(10),
+                              child: Text(
+                                textAlign: provider.textAlignIndx == 0
+                                    ? TextAlign.left
+                                    : provider.textAlignIndx == 1
+                                        ? TextAlign.center
+                                        : TextAlign.right,
+                                provider.currentText!.isEmpty
+                                    ? "lbl_speaking".tr(context)
+                                    : provider.currentText!,
+                                maxLines: 10,
+                                overflow: TextOverflow.ellipsis,
+                                style: theme.textTheme.titleLarge!.copyWith(
+                                  fontSize: provider.textSize,
+                                  fontWeight: provider.fontWeight == 300
+                                      ? FontWeight.w300
+                                      : provider.fontWeight == 600
+                                          ? FontWeight.w600
+                                          : FontWeight.w900,
+                                ),
+                              ),
+                            ),
                           ),
                         )
                       ]),
-                      Spacer(),
+                      const Spacer(),
                       SizedBox(height: 28.v),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -119,7 +133,7 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                                   // ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 20,
                               ),
                               Row(
@@ -190,7 +204,7 @@ class _VoiceRecognitionScreenState extends State<VoiceRecognitionScreen> {
                                           isDismissible: true,
                                         );
                                       },
-                                      icon: Icon(Icons.equalizer_outlined),
+                                      icon: const Icon(Icons.equalizer_rounded),
                                       iconSize: 40,
                                     ),
                                   ]),
