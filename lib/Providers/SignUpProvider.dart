@@ -2,13 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dfvue/Repositories/authentication_repo.dart';
 import 'package:dfvue/Repositories/user_repository.dart';
 import 'package:dfvue/app_export.dart';
-import 'package:dfvue/models/userModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-// Import the User model
-import 'dart:convert';
 
 class SignupProvider with ChangeNotifier {
   // UserModel? _currentUser;

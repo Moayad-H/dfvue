@@ -18,6 +18,7 @@ class LogInProvider with ChangeNotifier {
   bool isLoading = false;
 
   final TextEditingController passwordController = TextEditingController();
+  final TextEditingController resetPasswordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   bool isObscure = true;
   final CollectionReference _usersCollection =
@@ -79,6 +80,27 @@ class LogInProvider with ChangeNotifier {
   //   return false;
   // }
   final formKey = GlobalKey<FormState>();
+  Future<void> resetPassword(BuildContext context) async {
+    showDialog(
+        context: context,
+        builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ));
+    try {
+      await authService.resetPassword(resetPasswordController.text);
+      GoRouter.of(context).pop();
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+            content: Text(
+                "Email SENT, Check for instructions to reset your password")),
+      );
+      GoRouter.of(context).pushReplacement(AppRoutes.logInScreen);
+    } on FirebaseAuthException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.code)),
+      );
+    }
+  }
 
   Future<void> logIn(BuildContext context) async {
     showDialog(

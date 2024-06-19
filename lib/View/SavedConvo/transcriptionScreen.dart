@@ -15,92 +15,88 @@ class TranscriptionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     return Consumer<VoiceRecognitionProvider>(
-        builder: (context, voiceProvider, child) => SafeArea(
-            child: Scaffold(
-                body: SizedBox(
-                    width: double.maxFinite,
-                    child: Column(children: [
-                      _buildOne(context),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          IconButton(
-                              iconSize: 30,
-                              onPressed: GoRouter.of(context).pop,
-                              icon: Icon(Icons.arrow_back)),
-                        ],
-                      ),
-                      SizedBox(height: 40.v),
-                      Expanded(
-                        child: Padding(
-                            padding: EdgeInsets.only(left: 14.h, right: 25.h),
-                            child: ListView.separated(
-                              shrinkWrap: true,
-                              separatorBuilder: (context, index) {
-                                return SizedBox(height: 46.v);
-                              },
-                              itemCount: voiceProvider.textList.length,
-                              itemBuilder: (context, index) {
-                                final transcription =
-                                    voiceProvider.textList[index];
+        builder: (context, voiceProvider, child) => Scaffold(
+            body: SizedBox(
+                width: double.maxFinite,
+                child: Column(children: [
+                  _buildOne(context),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      IconButton(
+                          iconSize: 30,
+                          onPressed: GoRouter.of(context).pop,
+                          icon: Icon(Icons.arrow_back)),
+                    ],
+                  ),
+                  SizedBox(height: 40.v),
+                  Expanded(
+                    child: Padding(
+                        padding: EdgeInsets.only(left: 14.h, right: 25.h),
+                        child: ListView.separated(
+                          shrinkWrap: true,
+                          separatorBuilder: (context, index) {
+                            return SizedBox(height: 46.v);
+                          },
+                          itemCount: voiceProvider.textList.length,
+                          itemBuilder: (context, index) {
+                            final transcription = voiceProvider.textList[index];
 
-                                return Container(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal: 4.h,
-                                    vertical: 16.v,
-                                  ),
-                                  decoration: AppDecoration
-                                      .outlineErrorContainer
-                                      .copyWith(
+                            return Container(
+                              padding: EdgeInsets.symmetric(
+                                horizontal: 4.h,
+                                vertical: 16.v,
+                              ),
+                              decoration:
+                                  AppDecoration.outlineErrorContainer.copyWith(
+                                borderRadius: BorderRadiusStyle.roundedBorder10,
+                              ),
+                              child: ListTile(
+                                title: Text(
+                                  transcription.text,
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                trailing: Container(
+                                  decoration:
+                                      AppDecoration.outlinePrimary.copyWith(
                                     borderRadius:
-                                        BorderRadiusStyle.roundedBorder10,
+                                        BorderRadiusStyle.roundedBorder30,
                                   ),
-                                  child: ListTile(
-                                    title: Text(
-                                      transcription.text,
-                                      maxLines: 2,
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
+                                  child: IconButton(
+                                    icon: Icon(
+                                      Icons.delete_outline_outlined,
+                                      color: theme.primaryColor,
                                     ),
-                                    trailing: Container(
-                                      decoration:
-                                          AppDecoration.outlinePrimary.copyWith(
-                                        borderRadius:
-                                            BorderRadiusStyle.roundedBorder30,
-                                      ),
-                                      child: IconButton(
-                                        icon: Icon(
-                                          Icons.delete_outline_outlined,
-                                          color: theme.primaryColor,
-                                        ),
-                                        onPressed: () async {
-                                          await voiceProvider
-                                              .deleteTranscription(index);
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                                content: Text(voiceProvider
-                                                    .saveStatusMessage)),
-                                          );
-                                        },
-                                      ),
-                                    ),
+                                    onPressed: () async {
+                                      await voiceProvider
+                                          .deleteTranscription(index);
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                            content: Text(voiceProvider
+                                                .saveStatusMessage)),
+                                      );
+                                    },
                                   ),
-                                );
-                              },
-                            )),
-                      ),
-                      SizedBox(height: 20.v),
-                      CustomImageView(
-                          imagePath: ImageConstant.imgClose,
-                          height: 24.v,
-                          width: 30.h,
-                          onTap: () {
-                            GoRouter.of(context).pop();
-                          }),
-                      SizedBox(height: 5.v)
-                    ])))));
+                                ),
+                              ),
+                            );
+                          },
+                        )),
+                  ),
+                  SizedBox(height: 20.v),
+                  CustomImageView(
+                      imagePath: ImageConstant.imgClose,
+                      height: 24.v,
+                      width: 30.h,
+                      onTap: () {
+                        GoRouter.of(context).pop();
+                      }),
+                  SizedBox(height: 5.v)
+                ]))));
   }
 
   /// Section Widget

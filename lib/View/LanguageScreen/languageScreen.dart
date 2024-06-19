@@ -29,156 +29,151 @@ class _LanguageScreenState extends State<LanguageScreen> {
     mediaQueryData = MediaQuery.of(context);
     return Consumer<ProfileProvider>(
       builder: (BuildContext context, ProfileProvider value, Widget? child) =>
-          SafeArea(
-        child: Consumer<AppProvider>(builder: (context, language, child) {
-          selectedSubtitle = language.locale!.languageCode;
-          selectedSpoken = language.spokenLocale!.languageCode;
-          return Scaffold(
-            resizeToAvoidBottomInset: false,
-            body: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildView(context, value),
-                SizedBox(height: 20.v),
-                Padding(
-                  padding: EdgeInsets.only(left: 10.h, bottom: 10.h),
-                  child: Text(
-                    "msg_select_app_language".tr(context),
-                    style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                    ),
+          Consumer<AppProvider>(builder: (context, language, child) {
+        selectedSubtitle = language.locale!.languageCode;
+        selectedSpoken = language.spokenLocale!.languageCode;
+        return Scaffold(
+          body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _buildView(context, value),
+              SizedBox(height: 20.v),
+              Padding(
+                padding: EdgeInsets.only(left: 10.h, bottom: 10.h),
+                child: Text(
+                  "msg_select_app_language".tr(context),
+                  style: const TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 3.v),
-                Padding(
-                  padding: EdgeInsets.only(left: 18.h),
-                  child: Text(
-                    "msg_what_language_the".tr(context),
+              ),
+              SizedBox(height: 3.v),
+              Padding(
+                padding: EdgeInsets.only(left: 18.h),
+                child: Text(
+                  "msg_what_language_the".tr(context),
+                  style: TextStyle(
+                      fontSize: 15, color: theme.colorScheme.onPrimary),
+                ),
+              ),
+              SizedBox(height: 13.v),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text('msg_subtitle_language'.tr(context),
                     style: TextStyle(
-                        fontSize: 15, color: theme.colorScheme.onPrimary),
-                  ),
-                ),
-                SizedBox(height: 13.v),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('msg_subtitle_language'.tr(context),
-                      style: TextStyle(
-                          fontSize: 20, color: theme.colorScheme.onPrimary)),
-                ),
-                SizedBox(height: 5.v),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                      child: Container(
-                        height: 50,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.h),
-                          border: Border.all(
-                              color: theme.colorScheme.primary, width: 1.h),
-                        ),
-                        child: Row(
-                          children: [
-                            DropdownButton<String>(
-                              value: selectedSpoken,
-                              hint: Text('msg_subtitle_language'.tr(context)),
-                              items: [
-                                DropdownMenuItem(
-                                  value: 'en',
-                                  child: Text('English'),
-                                ),
-                                DropdownMenuItem(
-                                  value: 'ar',
-                                  child: Text('العربية'),
-                                ),
-                              ],
-                              onChanged: (newVal) {
-                                setState(() {
-                                  language.setSpokenLocale(Locale(newVal!));
-                                });
-                              },
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.black),
-                            ),
-                          ],
-                        ),
+                        fontSize: 20, color: theme.colorScheme.onPrimary)),
+              ),
+              SizedBox(height: 5.v),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Container(
+                      height: 50,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.h),
+                        border: Border.all(
+                            color: theme.colorScheme.primary, width: 1.h),
+                      ),
+                      child: Row(
+                        children: [
+                          DropdownButton<String>(
+                            value: selectedSpoken,
+                            hint: Text('msg_subtitle_language'.tr(context)),
+                            items: [
+                              DropdownMenuItem(
+                                value: 'en',
+                                child: Text('English'),
+                              ),
+                              DropdownMenuItem(
+                                value: 'ar',
+                                child: Text('العربية'),
+                              ),
+                            ],
+                            onChanged: (newVal) {
+                              setState(() {
+                                language.setSpokenLocale(Locale(newVal!));
+                              });
+                            },
+                            style: TextStyle(fontSize: 20, color: Colors.black),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text("msg_select_app_language".tr(context),
-                      style: TextStyle(fontSize: 20, color: Colors.black)),
-                ),
-                SizedBox(height: 5.v),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
-                      child: Container(
-                        height: 50,
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10.h),
-                          border: Border.all(
-                              color: theme.colorScheme.primary, width: 1.h),
-                        ),
-                        child: Row(
-                          children: [
-                            DropdownButton<String>(
-                              value: selectedSubtitle,
-                              hint: Text('Select Subtitle Language'),
-                              items: [
-                                DropdownMenuItem(
-                                  value: 'en',
-                                  child: Text('English'),
-                                ),
-                                DropdownMenuItem(
-                                  value: 'ar',
-                                  child: Text('العربية'),
-                                ),
-                              ],
-                              onChanged: (newVal) {
-                                setState(() {
-                                  language.setLocale(Locale(newVal!));
-                                });
-                              },
-                              style:
-                                  TextStyle(fontSize: 20, color: Colors.black),
-                            ),
-                          ],
-                        ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("msg_select_app_language".tr(context),
+                    style: TextStyle(fontSize: 20, color: Colors.black)),
+              ),
+              SizedBox(height: 5.v),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Container(
+                      height: 50,
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10.h),
+                        border: Border.all(
+                            color: theme.colorScheme.primary, width: 1.h),
+                      ),
+                      child: Row(
+                        children: [
+                          DropdownButton<String>(
+                            value: selectedSubtitle,
+                            hint: Text('Select Subtitle Language'),
+                            items: [
+                              DropdownMenuItem(
+                                value: 'en',
+                                child: Text('English'),
+                              ),
+                              DropdownMenuItem(
+                                value: 'ar',
+                                child: Text('العربية'),
+                              ),
+                            ],
+                            onChanged: (newVal) {
+                              setState(() {
+                                language.setLocale(Locale(newVal!));
+                              });
+                            },
+                            style: TextStyle(fontSize: 20, color: Colors.black),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
-                const Spacer(),
-                CustomOutlinedButton(
-                  margin: EdgeInsets.only(bottom: 10.h),
-                  decoration: BoxDecoration(
-                    color: theme.primaryColor,
-                    borderRadius: BorderRadius.circular(10.h),
-                    border: Border.all(color: theme.primaryColor, width: 1.h),
                   ),
-                  width: 200.h,
-                  text: "lbl_continue".tr(context),
-                  buttonTextStyle: TextStyle(color: Colors.white, fontSize: 20),
-                  onPressed: () {
-                    GoRouter.of(context).push(AppRoutes.startScreen);
-                  },
-                  alignment: Alignment.center,
+                ],
+              ),
+              const Spacer(),
+              CustomOutlinedButton(
+                margin: EdgeInsets.only(bottom: 10.h),
+                decoration: BoxDecoration(
+                  color: theme.primaryColor,
+                  borderRadius: BorderRadius.circular(10.h),
+                  border: Border.all(color: theme.primaryColor, width: 1.h),
                 ),
-              ],
-            ),
-          );
-        }),
-      ),
+                width: 200.h,
+                text: "lbl_continue".tr(context),
+                buttonTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+                onPressed: () {
+                  GoRouter.of(context).push(AppRoutes.startScreen);
+                },
+                alignment: Alignment.center,
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 

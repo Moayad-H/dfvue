@@ -16,103 +16,100 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class UserProfileScreen extends StatelessWidget {
-  GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   UserProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
-    return Consumer<ProfileProvider>(
-      builder: (context, provider, child) => SafeArea(
-        child: Scaffold(
-          resizeToAvoidBottomInset: false,
-          body: Form(
-            key: _formKey,
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildProfile(context),
-                  SizedBox(height: 19.v),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "lbl_username".tr(context),
-                          style: TextStyle(color: Colors.black, fontSize: 14),
-                        ),
-                        SizedBox(height: 2.v),
-                        CustomTextFormField(
-                          autofocus: false,
-                          controller: provider.nameController,
-                          hintText: "lbl_username".tr(context),
-                          hintStyle: const TextStyle(
-                              color: Colors.black, fontSize: 14),
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 12.h, vertical: 11.v),
-                        ),
-                        SizedBox(height: 18.v),
-                        Text(
-                          "lbl_email_i_d".tr(context),
-                          style: TextStyle(color: Colors.black, fontSize: 14),
-                        ),
-                        SizedBox(height: 2.v),
-                        CustomTextFormField(
-                          autofocus: false,
-                          controller: provider.emailController,
-                          hintText: "lbl_email_i_d".tr(context),
-                          hintStyle: const TextStyle(
-                              color: Colors.black, fontSize: 14),
-                          textInputType: TextInputType.emailAddress,
-                          validator: (value) {
-                            if (value == null ||
-                                !isValidEmail(value, isRequired: true)) {
-                              return "Please Enter Valid Email";
-                            }
-                            return null;
-                          },
-                          contentPadding: EdgeInsets.symmetric(
-                              horizontal: 12.h, vertical: 11.v),
-                        ),
-                        SizedBox(height: 18.v),
-                        SizedBox(height: 65.v),
-                      ],
-                    ),
-                  ),
-                  _buildUpdate(context, provider),
-                  SizedBox(height: 65.v),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+    return Scaffold(
+      body: Form(
+        key: _formKey,
+        child: Consumer<ProfileProvider>(
+          builder: (context, provider, child) => SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildProfile(context),
+                SizedBox(height: 19.v),
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          onTapTxtLogOut(context);
-                        },
-                        child: Padding(
-                          padding: EdgeInsets.only(right: 6.h, top: 3.v),
-                          child: Row(
-                            children: [
-                              const Icon(
-                                Icons.login,
-                                color: Colors.red,
-                              ),
-                              Text(
-                                "lbl_log_out".tr(context),
-                                style: const TextStyle(
-                                    color: Colors.red, fontSize: 20),
-                              ),
-                            ],
-                          ),
-                        ),
+                      Text(
+                        "lbl_username".tr(context),
+                        style: TextStyle(color: Colors.black, fontSize: 14),
                       ),
+                      SizedBox(height: 2.v),
+                      CustomTextFormField(
+                        autofocus: false,
+                        controller: provider.nameController,
+                        hintText: "lbl_username".tr(context),
+                        hintStyle:
+                            const TextStyle(color: Colors.black, fontSize: 14),
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 12.h, vertical: 11.v),
+                      ),
+                      SizedBox(height: 18.v),
+                      Text(
+                        "lbl_email_i_d".tr(context),
+                        style: TextStyle(color: Colors.black, fontSize: 14),
+                      ),
+                      SizedBox(height: 2.v),
+                      CustomTextFormField(
+                        autofocus: false,
+                        controller: provider.emailController,
+                        hintText: "lbl_email_i_d".tr(context),
+                        hintStyle:
+                            const TextStyle(color: Colors.black, fontSize: 14),
+                        textInputType: TextInputType.emailAddress,
+                        validator: (value) {
+                          if (value == null ||
+                              !isValidEmail(value, isRequired: true)) {
+                            return "Please Enter Valid Email";
+                          }
+                          return null;
+                        },
+                        contentPadding: EdgeInsets.symmetric(
+                            horizontal: 12.h, vertical: 11.v),
+                      ),
+                      SizedBox(height: 18.v),
+                      SizedBox(height: 65.v),
                     ],
                   ),
-                  SizedBox(height: 5.v),
-                ],
-              ),
+                ),
+                _buildUpdate(context, provider),
+                SizedBox(height: 65.v),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        onTapTxtLogOut(context);
+                      },
+                      child: Padding(
+                        padding: EdgeInsets.only(right: 6.h, top: 3.v),
+                        child: Row(
+                          children: [
+                            const Icon(
+                              Icons.login,
+                              color: Colors.red,
+                            ),
+                            Text(
+                              "lbl_log_out".tr(context),
+                              style: const TextStyle(
+                                  color: Colors.red, fontSize: 20),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 5.v),
+              ],
             ),
           ),
         ),
