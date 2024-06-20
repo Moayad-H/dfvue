@@ -7,8 +7,8 @@ class AppProvider extends ChangeNotifier {
   AppProvider(this._themeData);
   ThemeMode themeSelected = ThemeMode.light;
   ThemeData get themeData => _themeData;
-  static Locale _locale = Locale('en');
-  static Locale _spokenLocale = Locale('en');
+  static Locale _locale = const Locale('en');
+  static Locale _spokenLocale = const Locale('en');
   Locale? get spokenLocale => _spokenLocale;
   Locale? get locale => _locale;
   void changeThemeMode(String selected) {

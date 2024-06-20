@@ -137,4 +137,17 @@ final Map<String, String> enUs = {
   "err_msg_please_enter_valid_phone_number": "Please enter valid phone number",
   "err_msg_please_enter_valid_password": "Please enter valid password",
   "err_msg_please_enter_valid_email": "Please enter valid email",
+//Setting Bottom Sheet
+  "listen": "Listening...",
+  "change_language": "Change Language",
+  "change_colors": "Change Colors",
+  "change_style": "Change Style",
+  "light": "Light",
+  "dark": "Dark",
+  "size": "Size",
+  "alignment": "Alignment",
+  "font_weight": "Font Weight",
+  "left": "Left",
+  "right": "Right",
+  "center": "Center",
 };

@@ -1,16 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dfvue/Providers/profileProvider.dart';
 import 'package:dfvue/Repositories/authentication_repo.dart';
 import 'package:dfvue/Repositories/user_repository.dart';
 import 'package:dfvue/app_export.dart';
-import 'package:dfvue/models/userModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-// Import the User model
-import 'dart:convert';
 
 class LogInProvider with ChangeNotifier {
   // UserModel? _currentUser;
@@ -21,8 +16,6 @@ class LogInProvider with ChangeNotifier {
   final TextEditingController resetPasswordController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   bool isObscure = true;
-  final CollectionReference _usersCollection =
-      FirebaseFirestore.instance.collection('users');
 
   final AuthService authService = AuthService();
   final UserProfileService userProfileService = UserProfileService();
@@ -88,17 +81,23 @@ class LogInProvider with ChangeNotifier {
             ));
     try {
       await authService.resetPassword(resetPasswordController.text);
-      GoRouter.of(context).pop();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-            content: Text(
-                "Email SENT, Check for instructions to reset your password")),
-      );
-      GoRouter.of(context).pushReplacement(AppRoutes.logInScreen);
+      if (context.mounted) {
+        GoRouter.of(context).pop();
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+              content: Text(
+                  "Email SENT, Check for instructions to reset your password")),
+        );
+      }
+      if (context.mounted) {
+        GoRouter.of(context).pushReplacement(AppRoutes.logInScreen);
+      }
     } on FirebaseAuthException catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.code)),
-      );
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.code)),
+        );
+      }
     }
   }
 
@@ -118,20 +117,26 @@ class LogInProvider with ChangeNotifier {
           const SnackBar(content: Text('Error, Check your credentials')),
         );
       } else {
-        await Provider.of<ProfileProvider>(context, listen: false)
-            .loadUserProfile();
+        if (context.mounted) {
+          await Provider.of<ProfileProvider>(context, listen: false)
+              .loadUserProfile();
+        }
+        if (context.mounted) {
+          GoRouter.of(context).pop();
 
-        GoRouter.of(context).pop();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text("logged in")),
-        );
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("logged in")),
+          );
+        }
       }
       //GoRouter.of(context).go(AppRoutes.authPage);
     } on FirebaseAuthException catch (e) {
-      GoRouter.of(context).pop();
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text(e.code)),
-      );
+      if (context.mounted) {
+        GoRouter.of(context).pop();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(e.code)),
+        );
+      }
     }
   }
 }

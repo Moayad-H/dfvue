@@ -3,9 +3,6 @@ import 'package:dfvue/models/userModel.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class UserProfileService {
-  final CollectionReference _usersCollection =
-      FirebaseFirestore.instance.collection('users');
-
   // Future<void> createUserProfile(UserProfile userProfile) async {
   //   return await _usersCollection.doc(userProfile.uid).set(userProfile.toMap());
   // }

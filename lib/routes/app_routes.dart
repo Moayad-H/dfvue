@@ -95,7 +95,8 @@ class AppRoutes {
       ),
       GoRoute(
         path: signUpScreen,
-        builder: (BuildContext context, GoRouterState state) => SignUpScreen(),
+        builder: (BuildContext context, GoRouterState state) =>
+            const SignUpScreen(),
       ),
       GoRoute(
         path: logInScreen,

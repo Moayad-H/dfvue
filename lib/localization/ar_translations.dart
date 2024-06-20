@@ -136,4 +136,18 @@ final Map<String, String> arSa = {
   "err_msg_please_enter_valid_phone_number": "يرجى إدخال رقم هاتف صالح",
   "err_msg_please_enter_valid_password": "يرجى إدخال كلمة مرور صالحة",
   "err_msg_please_enter_valid_email": "يرجى إدخال بريد إلكتروني صالح",
+  //settings bottom sheet
+
+  "listen": " ...يتم الاستماع",
+  "change_language": "تغيير اللغة",
+  "change_colors": "تغيير الألوان",
+  "change_style": "تغيير النمط",
+  "light": "فاتح",
+  "dark": "داكن",
+  "size": "حجم",
+  "alignment": "محاذاة",
+  "font_Weight": "سمك الخط",
+  "left": "يسار",
+  "right": "يمين",
+  "center": "وسط"
 };

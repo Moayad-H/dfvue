@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dfvue/Repositories/authentication_repo.dart';
 import 'package:dfvue/Repositories/user_repository.dart';
@@ -90,6 +92,7 @@ class SignupProvider with ChangeNotifier {
       );
       createUserDocument(user);
     } on FirebaseAuthException catch (e) {
+      log("Firebase Exception $e");
       GoRouter.of(context).pop();
     }
     // if (user != null) {
@@ -103,7 +106,7 @@ class SignupProvider with ChangeNotifier {
 
     isLoading = false;
     notifyListeners();
-    SnackBar(content: Text('Success'));
+    const SnackBar(content: Text('Success'));
     // Navigate to home screen or profile screen
     GoRouter.of(context).push(AppRoutes.logInScreen);
     // } else {

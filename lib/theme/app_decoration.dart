@@ -32,8 +32,8 @@ class AppDecoration {
   // Gradient decorations
   static BoxDecoration get gradientPrimaryToBlueGray => BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment(0.32, 0.97),
-          end: Alignment(0.31, 1.3),
+          begin: const Alignment(0.32, 0.97),
+          end: const Alignment(0.31, 1.3),
           colors: [
             theme.colorScheme.primary,
             appTheme.blueGray20000,
@@ -42,8 +42,8 @@ class AppDecoration {
       );
   static BoxDecoration get gradientPrimaryToOnPrimaryContainer => BoxDecoration(
         gradient: LinearGradient(
-          begin: Alignment(-0.26, 0.24),
-          end: Alignment(1.1, 0.5),
+          begin: const Alignment(-0.26, 0.24),
+          end: const Alignment(1.1, 0.5),
           colors: [
             theme.colorScheme.primary,
             theme.colorScheme.onPrimaryContainer,
@@ -65,14 +65,14 @@ class AppDecoration {
             color: theme.colorScheme.errorContainer.withOpacity(0.25),
             spreadRadius: 2.h,
             blurRadius: 2.h,
-            offset: Offset(
+            offset: const Offset(
               0,
               4,
             ),
           ),
         ],
       );
-  static BoxDecoration get outlineErrorContainer2 => BoxDecoration();
+  static BoxDecoration get outlineErrorContainer2 => const BoxDecoration();
   static BoxDecoration get outlineGray => BoxDecoration(
         color: appTheme.gray40099,
         border: Border.all(

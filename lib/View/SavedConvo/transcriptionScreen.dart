@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dfvue/Providers/voice_recognition_provider.dart';
 import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/utils/size_utils.dart';
@@ -26,7 +24,7 @@ class TranscriptionScreen extends StatelessWidget {
                       IconButton(
                           iconSize: 30,
                           onPressed: GoRouter.of(context).pop,
-                          icon: Icon(Icons.arrow_back)),
+                          icon: const Icon(Icons.arrow_back)),
                     ],
                   ),
                   SizedBox(height: 40.v),
@@ -55,7 +53,7 @@ class TranscriptionScreen extends StatelessWidget {
                                 title: Text(
                                   transcription.text,
                                   maxLines: 2,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold),
                                 ),
@@ -73,12 +71,14 @@ class TranscriptionScreen extends StatelessWidget {
                                     onPressed: () async {
                                       await voiceProvider
                                           .deleteTranscription(index);
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        SnackBar(
-                                            content: Text(voiceProvider
-                                                .saveStatusMessage)),
-                                      );
+                                      if (context.mounted) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          SnackBar(
+                                              content: Text(voiceProvider
+                                                  .saveStatusMessage)),
+                                        );
+                                      }
                                     },
                                   ),
                                 ),

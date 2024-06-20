@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:dfvue/app_export.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  CustomTextFormField({
-    Key? key,
+  const CustomTextFormField({
+    super.key,
     this.alignment,
     this.width,
     this.controller,
@@ -26,9 +26,7 @@ class CustomTextFormField extends StatelessWidget {
     this.fillColor,
     this.filled = true,
     this.validator,
-  }) : super(
-          key: key,
-        );
+  });
 
   final Alignment? alignment;
 
@@ -88,7 +86,8 @@ class CustomTextFormField extends StatelessWidget {
           controller: controller,
           focusNode: focusNode ?? FocusNode(),
           autofocus: autofocus!,
-          style: textStyle ?? TextStyle(color: Colors.black, fontSize: 12),
+          style:
+              textStyle ?? const TextStyle(color: Colors.black, fontSize: 12),
           obscureText: obscureText!,
           textInputAction: textInputAction,
           keyboardType: textInputType,
@@ -99,7 +98,8 @@ class CustomTextFormField extends StatelessWidget {
       );
   InputDecoration get decoration => InputDecoration(
         hintText: hintText ?? "",
-        hintStyle: hintStyle ?? TextStyle(color: Colors.black, fontSize: 12),
+        hintStyle:
+            hintStyle ?? const TextStyle(color: Colors.black, fontSize: 12),
         prefixIcon: prefix,
         prefixIconConstraints: prefixConstraints,
         suffixIcon: suffix,

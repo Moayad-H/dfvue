@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AppStyle {
-  static Color primaryColor = Color(0xff006ed4);
-  static Color darkPrimaryColor = Color(0xff004ec2);
+  static Color primaryColor = const Color(0xff006ed4);
+  static Color darkPrimaryColor = const Color(0xff004ec2);
   static const Color redErrorColor = Color(0xffde0a4a);
   static const Color offWhite = Color(0xFFE8E8E8);
   static const Color greyColor = Color(0xFF939292);
@@ -12,7 +12,7 @@ class AppStyle {
   static const Color green = Colors.green;
   static const Color red = Colors.red;
   static const Color underDevelopment = Color(0xFF414141);
-  static Color cardColor = Color(0xff3B82F6);
+  static Color cardColor = const Color(0xff3B82F6);
   static const String lexendFont = 'Lexend';
   static const Color grey = Color(0xFFE0E0E0);
   static const Color lightGrey = Colors.grey;

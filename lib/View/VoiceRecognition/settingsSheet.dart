@@ -1,6 +1,5 @@
 import 'package:dfvue/Providers/app_provider.dart';
 import 'package:dfvue/Providers/settingsProvider.dart';
-import 'package:dfvue/View/LanguageScreen/languageScreen.dart';
 import 'package:dfvue/View/VoiceRecognition/SettingsBottomSheet/changeLanguageSheet.dart';
 import 'package:dfvue/View/VoiceRecognition/SettingsBottomSheet/change_color_sheet.dart';
 import 'package:dfvue/View/VoiceRecognition/SettingsBottomSheet/change_font_sheet.dart';
@@ -49,14 +48,13 @@ class _SettingssheetState extends State<Settingssheet> {
                                 color: Colors.white,
                                 onPressed: () {
                                   _onIconPressed(0);
-                                  isChosen.selectLanguage();
                                 },
                                 icon: const Icon(Icons.settings_outlined),
                                 isSelected: null,
                                 iconSize: iconSize,
                                 style: IconButton.styleFrom(
                                   shape: const RoundedRectangleBorder(),
-                                  backgroundColor: isChosen.LanguageButton
+                                  backgroundColor: _selectedScreenIndex == 0
                                       ? Colors.white30
                                       : null,
                                 )),
@@ -73,14 +71,13 @@ class _SettingssheetState extends State<Settingssheet> {
                                 color: Colors.white,
                                 onPressed: () {
                                   _onIconPressed(1);
-                                  isChosen.selectColorButton();
                                 },
                                 icon: const Icon(Icons.color_lens),
                                 isSelected: null,
                                 iconSize: iconSize,
                                 style: IconButton.styleFrom(
                                   shape: const RoundedRectangleBorder(),
-                                  backgroundColor: isChosen.colorButton
+                                  backgroundColor: _selectedScreenIndex == 1
                                       ? Colors.white30
                                       : null,
                                 )),
@@ -97,14 +94,13 @@ class _SettingssheetState extends State<Settingssheet> {
                                 color: Colors.white,
                                 onPressed: () {
                                   _onIconPressed(2);
-                                  isChosen.selectFontButton();
                                 },
                                 icon: const Icon(Icons.text_fields_outlined),
                                 isSelected: null,
                                 iconSize: iconSize,
                                 style: IconButton.styleFrom(
                                   shape: const RoundedRectangleBorder(),
-                                  backgroundColor: isChosen.fontButton
+                                  backgroundColor: _selectedScreenIndex == 2
                                       ? Colors.white30
                                       : null,
                                 )),
@@ -126,10 +122,10 @@ class _SettingssheetState extends State<Settingssheet> {
                     ),
                     Expanded(
                         child: _selectedScreenIndex == 0
-                            ? ChangeLanguageSheet()
+                            ? const ChangeLanguageSheet()
                             : _selectedScreenIndex == 1
-                                ? ChangeColorSheet()
-                                : ChangeFontSheet())
+                                ? const ChangeColorSheet()
+                                : const ChangeFontSheet())
                   ],
                 ),
               );

@@ -1,7 +1,6 @@
-import 'package:dfvue/View/InitialScreen/initialScreen.dart';
-import 'package:dfvue/View/StartScreen/start_screen.dart';
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -17,7 +16,7 @@ class AuthService {
       );
       return result.user;
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
       return null;
     }
   }
@@ -31,7 +30,7 @@ class AuthService {
       );
       return result.user;
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
       return null;
     }
   }
@@ -42,8 +41,9 @@ class AuthService {
         email: email,
       );
     } catch (e) {
-      print(e.toString());
+      log(e.toString());
       return null;
     }
+    return null;
   }
 }

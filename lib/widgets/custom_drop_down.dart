@@ -1,20 +1,17 @@
-import 'package:dfvue/models/selection_popup.dart';
 import 'package:dfvue/theme/app_style.dart';
-import 'package:dfvue/utils/size_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:dfvue/app_export.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomDropDownButton<T> extends StatelessWidget {
   const CustomDropDownButton({
-    Key? key,
+    super.key,
     this.value,
     this.items,
     this.onChanged,
     this.onSaved,
     this.hintText,
     this.validator,
-  }) : super(key: key);
+  });
 
   final String? value;
   final List<T>? items;

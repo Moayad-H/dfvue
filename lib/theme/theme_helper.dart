@@ -1,20 +1,19 @@
 import 'package:dfvue/utils/pref_utils.dart';
 import 'package:dfvue/utils/size_utils.dart';
 import 'package:flutter/material.dart';
-import '../app_export.dart';
 
 /// Helper class for managing themes and colors.
 class ThemeHelper {
   // The current app theme
-  var _appTheme = PrefUtils().getThemeData();
+  final dynamic _appTheme = PrefUtils().getThemeData();
 
 // A map of custom color themes supported by the app
-  Map<String, PrimaryColors> _supportedCustomColor = {
+  final Map<String, PrimaryColors> _supportedCustomColor = {
     'primary': PrimaryColors()
   };
 
 // A map of color schemes supported by the app
-  Map<String, ColorScheme> _supportedColorScheme = {
+  final Map<String, ColorScheme> _supportedColorScheme = {
     'primary': ColorSchemes.primaryColorScheme
   };
 
@@ -79,8 +78,8 @@ class ThemeHelper {
         ),
       ),
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateColor.resolveWith((states) {
-          if (states.contains(MaterialState.selected)) {
+        fillColor: WidgetStateColor.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
             return colorScheme.primary;
           }
           return colorScheme.onSurface;
@@ -142,8 +141,8 @@ class ThemeHelper {
         ),
       ),
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateColor.resolveWith((states) {
-          if (states.contains(MaterialState.selected)) {
+        fillColor: WidgetStateColor.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
             return colorScheme.primary;
           }
           return colorScheme.onSurface;
@@ -166,7 +165,7 @@ class ThemeHelper {
   }
 
   ThemeData darkThemeData() {
-    var colorScheme = ColorScheme.dark(
+    var colorScheme = const ColorScheme.dark(
       primary: Color(0XFF25BF6C),
       primaryContainer: Color(0XCC272626),
       secondaryContainer: Color(0X7525BF6C),
@@ -181,7 +180,7 @@ class ThemeHelper {
       visualDensity: VisualDensity.standard,
       colorScheme: colorScheme,
       textTheme: TextThemes.textTheme(colorScheme),
-      scaffoldBackgroundColor: Color(0XFF171717),
+      scaffoldBackgroundColor: const Color(0XFF171717),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
           backgroundColor: Colors.transparent,
@@ -215,8 +214,8 @@ class ThemeHelper {
         ),
       ),
       checkboxTheme: CheckboxThemeData(
-        fillColor: MaterialStateColor.resolveWith((states) {
-          if (states.contains(MaterialState.selected)) {
+        fillColor: WidgetStateColor.resolveWith((states) {
+          if (states.contains(WidgetState.selected)) {
             return colorScheme.primary;
           }
           return colorScheme.onSurface;
@@ -301,7 +300,7 @@ class TextThemes {
 
 /// Class containing the supported color schemes.
 class ColorSchemes {
-  static final primaryColorScheme = ColorScheme.light(
+  static const primaryColorScheme = ColorScheme.light(
     // Primary colors
     primary: Color(0XFF25BF6C),
     primaryContainer: Color(0XCC272626),
@@ -321,63 +320,63 @@ class ColorSchemes {
 /// Class containing custom colors for a primary theme.
 class PrimaryColors {
   // Amber
-  Color get amber400 => Color(0XFFFFDB22);
+  Color get amber400 => const Color(0XFFFFDB22);
 
   // BlueGray
-  Color get blueGray100 => Color(0XFFD9D9D9);
-  Color get blueGray20000 => Color(0X00B3CDBF);
+  Color get blueGray100 => const Color(0XFFD9D9D9);
+  Color get blueGray20000 => const Color(0X00B3CDBF);
 
   // BlueGrayE
-  Color get blueGray100E5 => Color(0XE5D5D5D5);
+  Color get blueGray100E5 => const Color(0XE5D5D5D5);
 
   // Gray
-  Color get gray100 => Color(0XFFF9F5F5);
-  Color get gray10001 => Color(0XFFF6F5F5);
-  Color get gray10002 => Color(0XFFF6F6F6);
-  Color get gray10003 => Color(0XFFF5F5F5);
-  Color get gray10004 => Color(0XFFF6F4F4);
-  Color get gray200 => Color(0XFFF1EFEF);
-  Color get gray20001 => Color(0XFFE9E6E6);
-  Color get gray20002 => Color(0XFFE9E7E7);
-  Color get gray20003 => Color(0XFFEDE4E4);
-  Color get gray20004 => Color(0XFFF0EEEE);
-  Color get gray30099 => Color(0X99DADADA);
-  Color get gray40099 => Color(0X99C3C3C3);
-  Color get gray50 => Color(0XFFF9F8F8);
-  Color get gray500 => Color(0XFFA8A8A8);
-  Color get gray50001 => Color(0XFFA4A1A0);
-  Color get gray5001 => Color(0XFFFFFAFA);
-  Color get gray5002 => Color(0XFFFFFBFB);
-  Color get gray5003 => Color(0XFFF8FEFF);
-  Color get gray700 => Color(0XFF675A5A);
-  Color get gray800 => Color(0XFF474646);
-  Color get gray900 => Color(0XFF171717);
+  Color get gray100 => const Color(0XFFF9F5F5);
+  Color get gray10001 => const Color(0XFFF6F5F5);
+  Color get gray10002 => const Color(0XFFF6F6F6);
+  Color get gray10003 => const Color(0XFFF5F5F5);
+  Color get gray10004 => const Color(0XFFF6F4F4);
+  Color get gray200 => const Color(0XFFF1EFEF);
+  Color get gray20001 => const Color(0XFFE9E6E6);
+  Color get gray20002 => const Color(0XFFE9E7E7);
+  Color get gray20003 => const Color(0XFFEDE4E4);
+  Color get gray20004 => const Color(0XFFF0EEEE);
+  Color get gray30099 => const Color(0X99DADADA);
+  Color get gray40099 => const Color(0X99C3C3C3);
+  Color get gray50 => const Color(0XFFF9F8F8);
+  Color get gray500 => const Color(0XFFA8A8A8);
+  Color get gray50001 => const Color(0XFFA4A1A0);
+  Color get gray5001 => const Color(0XFFFFFAFA);
+  Color get gray5002 => const Color(0XFFFFFBFB);
+  Color get gray5003 => const Color(0XFFF8FEFF);
+  Color get gray700 => const Color(0XFF675A5A);
+  Color get gray800 => const Color(0XFF474646);
+  Color get gray900 => const Color(0XFF171717);
 
   // GrayE
-  Color get gray200E5 => Color(0XE5F0F0F0);
+  Color get gray200E5 => const Color(0XE5F0F0F0);
 
   // Green
-  Color get green200 => Color(0XFFA8EFA1);
-  Color get green50099 => Color(0X994FC645);
-  Color get greenA100 => Color(0XFF98FFBB);
-  Color get greenA10001 => Color(0XFF98F4C2);
-  Color get greenA200 => Color(0XFF8CF8B1);
+  Color get green200 => const Color(0XFFA8EFA1);
+  Color get green50099 => const Color(0X994FC645);
+  Color get greenA100 => const Color(0XFF98FFBB);
+  Color get greenA10001 => const Color(0XFF98F4C2);
+  Color get greenA200 => const Color(0XFF8CF8B1);
 
   // GreenB
-  Color get green700B2 => Color(0XB22E905B);
+  Color get green700B2 => const Color(0XB22E905B);
 
   // Lime
-  Color get lime600 => Color(0XFFCAC544);
+  Color get lime600 => const Color(0XFFCAC544);
 
   // Orange
-  Color get orangeA200 => Color(0XFFF7A435);
+  Color get orangeA200 => const Color(0XFFF7A435);
 
   // Red
-  Color get red400 => Color(0XFFE95E3F);
-  Color get red600 => Color(0XFFEF2323);
+  Color get red400 => const Color(0XFFE95E3F);
+  Color get red600 => const Color(0XFFEF2323);
 
   // White
-  Color get whiteA700 => Color(0XFFFFFFFF);
+  Color get whiteA700 => const Color(0XFFFFFFFF);
   static ThemeData darkTheme = ThemeData.dark(useMaterial3: true);
 }
 

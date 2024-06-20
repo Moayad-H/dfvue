@@ -2,6 +2,7 @@ import 'package:dfvue/Providers/app_provider.dart';
 import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/theme/theme_helper.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class ChangeLanguageSheet extends StatefulWidget {
@@ -30,11 +31,11 @@ class _ChangeLanguageSheetState extends State<ChangeLanguageSheet> {
           //     theme.colorScheme.primaryContainer.withOpacity(0.3),
           child: Column(
             children: [
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Text('Change Language',
-                      style: TextStyle(fontSize: 20, color: Colors.white))
+                  Text('change_language'.tr(context),
+                      style: const TextStyle(fontSize: 20, color: Colors.white))
                 ],
               ),
               const SizedBox(
@@ -48,26 +49,31 @@ class _ChangeLanguageSheetState extends State<ChangeLanguageSheet> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("lbl_spoken_language".tr(context),
-                          style: const TextStyle(
-                              fontSize: 16, color: Colors.white)),
+                      Padding(
+                        padding: EdgeInsets.all(8),
+                        child: Text("lbl_spoken_language".tr(context),
+                            style: const TextStyle(
+                                fontSize: 12, color: Colors.white)),
+                      ),
+                      Spacer(),
                       DropdownButton<String>(
                         dropdownColor: theme.hoverColor.withOpacity(0.8),
                         value: selectedSpoken,
-                        hint: const Text('Select Subtitle '),
                         items: const [
                           DropdownMenuItem(
                             value: 'en',
                             child: Text(
                               'English',
+                              style: TextStyle(fontSize: 14),
                             ),
                           ),
                           DropdownMenuItem(
                             value: 'ar',
                             child: Text(
                               'العربية',
+                              style: TextStyle(fontSize: 14),
                             ),
                           ),
                         ],
@@ -82,23 +88,32 @@ class _ChangeLanguageSheetState extends State<ChangeLanguageSheet> {
                     ],
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text("msg_select_app_language".tr(context),
-                          style: const TextStyle(
-                              fontSize: 16, color: Colors.white)),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text("msg_select_app_language".tr(context),
+                            style: const TextStyle(
+                                fontSize: 12, color: Colors.white)),
+                      ),
+                      Spacer(),
                       DropdownButton<String>(
                         dropdownColor: theme.hoverColor.withOpacity(0.8),
                         value: selectedSubtitle,
-                        hint: const Text('Select Subtitle '),
                         items: const [
                           DropdownMenuItem(
                             value: 'en',
-                            child: Text('English'),
+                            child: Text(
+                              'English',
+                              style: TextStyle(fontSize: 14),
+                            ),
                           ),
                           DropdownMenuItem(
                             value: 'ar',
-                            child: Text('العربية'),
+                            child: Text(
+                              'العربية',
+                              style: TextStyle(fontSize: 14),
+                            ),
                           ),
                         ],
                         onChanged: (newVal) {

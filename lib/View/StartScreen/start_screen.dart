@@ -4,12 +4,11 @@ import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/utils/size_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:dfvue/app_export.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 class StartScreen extends StatelessWidget {
-  const StartScreen({Key? key}) : super(key: key);
+  const StartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,7 @@ class StartScreen extends StatelessWidget {
                         onPressed: () {
                           GoRouter.of(context).pop();
                         },
-                        icon: Icon(Icons.arrow_back),
+                        icon: const Icon(Icons.arrow_back),
                       ),
                       Row(
                         children: [
@@ -49,7 +48,7 @@ class StartScreen extends StatelessWidget {
                               alignment: Alignment.topRight,
                             ),
                           ),
-                          SizedBox(width: 20),
+                          const SizedBox(width: 20),
                           GestureDetector(
                             onTap: () {
                               value.loadUserProfile();
@@ -85,7 +84,7 @@ class StartScreen extends StatelessWidget {
                     child: Container(
                       width: mediaQueryData.size.width,
                       height: mediaQueryData.size.height * 0.125,
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       decoration: AppDecoration.outlineWhiteA,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -114,7 +113,7 @@ class StartScreen extends StatelessWidget {
                     child: Container(
                       width: mediaQueryData.size.width,
                       height: mediaQueryData.size.height * 0.125,
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       decoration: AppDecoration.outlineWhiteA,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
