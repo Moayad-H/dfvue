@@ -30,7 +30,7 @@ class LogInScreen extends StatelessWidget {
               width: double.maxFinite,
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: EdgeInsets.only(top: 20),
+                  padding: const EdgeInsets.only(top: 20),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -67,13 +67,13 @@ class LogInScreen extends StatelessWidget {
                                   autofocus: false,
                                   controller: provider.emailController,
                                   hintText: "lbl_email_address".tr(context),
-                                  hintStyle:
-                                      TextStyle(fontSize: 16, letterSpacing: 1),
+                                  hintStyle: const TextStyle(
+                                      fontSize: 16, letterSpacing: 1),
                                   textInputType: TextInputType.emailAddress,
                                   prefix: Padding(
                                       padding:
                                           EdgeInsets.symmetric(vertical: 17.v),
-                                      child: Icon(Icons.email)),
+                                      child: const Icon(Icons.email)),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
                                       return 'Please enter your email';
@@ -92,20 +92,20 @@ class LogInScreen extends StatelessWidget {
                                   autofocus: false,
                                   controller: provider.passwordController,
                                   hintText: "lbl_enter_password".tr(context),
-                                  hintStyle:
-                                      TextStyle(fontSize: 16, letterSpacing: 1),
+                                  hintStyle: const TextStyle(
+                                      fontSize: 16, letterSpacing: 1),
                                   textInputAction: TextInputAction.done,
                                   textInputType: TextInputType.visiblePassword,
                                   obscureText: provider.isObscure,
                                   prefix: Padding(
                                       padding:
                                           EdgeInsets.symmetric(vertical: 17.v),
-                                      child: Icon(Icons.password)),
+                                      child: const Icon(Icons.password)),
                                   suffix: InkWell(
                                     onTap: provider.changeObscure,
                                     child: provider.isObscure
-                                        ? Icon(Icons.visibility_sharp)
-                                        : Icon(Icons.visibility_off),
+                                        ? const Icon(Icons.visibility_sharp)
+                                        : const Icon(Icons.visibility_off),
                                   ),
                                   validator: (value) {
                                     if (value == null || value.isEmpty) {
@@ -157,13 +157,13 @@ class LogInScreen extends StatelessWidget {
                                           height: 25.adaptSize,
                                           width: 25.adaptSize,
                                         ),
-                                        Spacer(flex: 45),
+                                        const Spacer(flex: 45),
                                         CustomImageView(
                                           imagePath: ImageConstant.imgGoogle1,
                                           height: 25.adaptSize,
                                           width: 25.adaptSize,
                                         ),
-                                        Spacer(flex: 54),
+                                        const Spacer(flex: 54),
                                         CustomImageView(
                                           imagePath: ImageConstant.imgApple1,
                                           height: 25.adaptSize,
@@ -174,7 +174,7 @@ class LogInScreen extends StatelessWidget {
                                   ),
                                   SizedBox(height: 26.v),
                                   Padding(
-                                    padding: EdgeInsets.all(1),
+                                    padding: const EdgeInsets.all(1),
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -229,8 +229,9 @@ class LogInScreen extends StatelessWidget {
         // onPressed: onTapImgCdddfOne(context),
         onPressed: () async {
           await provider.logIn(context);
-
-          GoRouter.of(context).go(AppRoutes.authPage);
+          if (context.mounted) {
+            GoRouter.of(context).go(AppRoutes.authPage);
+          }
         },
       ),
     ]);

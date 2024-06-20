@@ -25,11 +25,11 @@ class _ChangeFontSheetState extends State<ChangeFontSheet> {
         //     theme.colorScheme.primaryContainer.withOpacity(0.3),
         child: Column(
           children: [
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Text('Change Style',
-                    style: TextStyle(fontSize: 20, color: Colors.white))
+                Text('change_style'.tr(context),
+                    style: const TextStyle(fontSize: 20, color: Colors.white))
               ],
             ),
             const SizedBox(
@@ -43,34 +43,37 @@ class _ChangeFontSheetState extends State<ChangeFontSheet> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text("Size",
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                    Text("size".tr(context),
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.white)),
+                    Spacer(),
                     Container(
-                      height: MediaQuery.of(context).size.width * 0.07,
-                      width: MediaQuery.of(context).size.width * 0.25,
+                      height: MediaQuery.of(context).size.width * 0.08,
+                      width: MediaQuery.of(context).size.width * 0.30,
                       decoration: BoxDecoration(
                           color: theme.colorScheme.primaryContainer
                               .withOpacity(0.5),
                           borderRadius: BorderRadius.circular(20)),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           IconButton(
                             iconSize: MediaQuery.of(context).size.width * 0.05,
                             onPressed: () {
                               value.increaseTextSize();
                             },
-                            icon: Icon(Icons.add),
+                            icon: const Icon(Icons.add),
                           ),
+                          Spacer(),
                           IconButton(
                             iconSize: MediaQuery.of(context).size.width * 0.05,
                             onPressed: () {
                               value.decreaseTextSize();
                             },
-                            icon: Icon(Icons.remove),
+                            icon: const Icon(Icons.remove),
                           ),
                         ],
                       ),
@@ -83,11 +86,12 @@ class _ChangeFontSheetState extends State<ChangeFontSheet> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Text",
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                    Text("alignment".tr(context),
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.white)),
                     Container(
-                      height: MediaQuery.of(context).size.width * 0.07,
-                      width: MediaQuery.of(context).size.width * 0.25,
+                      height: MediaQuery.of(context).size.width * 0.08,
+                      width: MediaQuery.of(context).size.width * 0.30,
                       decoration: BoxDecoration(
                           color: theme.colorScheme.primaryContainer
                               .withOpacity(0.5),
@@ -102,10 +106,10 @@ class _ChangeFontSheetState extends State<ChangeFontSheet> {
                             },
                             child: Text(
                               value.textAlignIndx == 0
-                                  ? 'Left'
+                                  ? 'left'.tr(context)
                                   : value.textAlignIndx == 1
-                                      ? "center"
-                                      : 'right',
+                                      ? "center".tr(context)
+                                      : 'right'.tr(context),
                             ),
                           ),
                         ],
@@ -119,11 +123,12 @@ class _ChangeFontSheetState extends State<ChangeFontSheet> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("Font weight",
-                        style: TextStyle(fontSize: 18, color: Colors.white)),
+                    Text("font_weight".tr(context),
+                        style:
+                            const TextStyle(fontSize: 18, color: Colors.white)),
                     Container(
-                      height: MediaQuery.of(context).size.width * 0.07,
-                      width: MediaQuery.of(context).size.width * 0.25,
+                      height: MediaQuery.of(context).size.width * 0.08,
+                      width: MediaQuery.of(context).size.width * 0.30,
                       decoration: BoxDecoration(
                           color: theme.colorScheme.primaryContainer
                               .withOpacity(0.5),

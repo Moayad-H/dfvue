@@ -1,7 +1,7 @@
 import 'package:dfvue/Providers/app_provider.dart';
 import 'package:dfvue/utils/size_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
 import '../app_export.dart';
 
 /// A collection of pre-defined text styles for customizing text appearance,

@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class CustomBottomAppBar extends StatefulWidget {
-  CustomBottomAppBar({this.onChanged});
+  CustomBottomAppBar({super.key, this.onChanged});
 
   Function(BottomBarEnum)? onChanged;
 
@@ -37,7 +37,7 @@ class CustomBottomAppBarState extends State<CustomBottomAppBar> {
   Widget build(BuildContext context) {
     return Consumer<AppProvider>(
       builder: (context, value, child) => BottomAppBar(
-        shape: CircularNotchedRectangle(),
+        shape: const CircularNotchedRectangle(),
         child: SizedBox(
           height: 98.v,
           child: Row(
@@ -144,12 +144,14 @@ class BottomMenuModel {
 }
 
 class DefaultWidget extends StatelessWidget {
+  const DefaultWidget({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.all(10),
-      child: Center(
+      padding: const EdgeInsets.all(10),
+      child: const Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,

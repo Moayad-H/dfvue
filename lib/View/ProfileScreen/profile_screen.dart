@@ -3,7 +3,6 @@ import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/routes/app_routes.dart';
 import 'package:dfvue/theme/app_decoration.dart';
 import 'package:dfvue/theme/custom_button_style.dart';
-import 'package:dfvue/theme/theme_helper.dart';
 import 'package:dfvue/utils/image_constant.dart';
 import 'package:dfvue/utils/size_utils.dart';
 import 'package:dfvue/utils/validation_functions.dart';
@@ -40,7 +39,8 @@ class UserProfileScreen extends StatelessWidget {
                     children: [
                       Text(
                         "lbl_username".tr(context),
-                        style: TextStyle(color: Colors.black, fontSize: 14),
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 14),
                       ),
                       SizedBox(height: 2.v),
                       CustomTextFormField(
@@ -55,7 +55,8 @@ class UserProfileScreen extends StatelessWidget {
                       SizedBox(height: 18.v),
                       Text(
                         "lbl_email_i_d".tr(context),
-                        style: TextStyle(color: Colors.black, fontSize: 14),
+                        style:
+                            const TextStyle(color: Colors.black, fontSize: 14),
                       ),
                       SizedBox(height: 2.v),
                       CustomTextFormField(
@@ -133,7 +134,7 @@ class UserProfileScreen extends StatelessWidget {
               IconButton(
                   iconSize: 30,
                   onPressed: GoRouter.of(context).pop,
-                  icon: Icon(Icons.arrow_back)),
+                  icon: const Icon(Icons.arrow_back)),
             ],
           ),
           Row(

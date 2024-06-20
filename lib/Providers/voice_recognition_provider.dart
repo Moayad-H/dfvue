@@ -1,12 +1,12 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:audio_waveforms/audio_waveforms.dart';
-import 'package:dfvue/localization/app_localization.dart';
+
 import 'package:dfvue/models/transcriptionModel.dart';
 import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
-import 'package:speech_to_text/speech_to_text_provider.dart';
 
 class VoiceRecognitionProvider extends ChangeNotifier {
   late stt.SpeechToText speech;
@@ -16,6 +16,7 @@ class VoiceRecognitionProvider extends ChangeNotifier {
   int fontWeight = 300;
   List<int> textAlign = [1, 2, 3];
   int textAlignIndx = 0;
+  String? colorMode = 'light';
   List<TranscriptionModel> _textList = [];
   String _saveStatusMessage = '';
   RecorderController controller = RecorderController();
@@ -23,6 +24,11 @@ class VoiceRecognitionProvider extends ChangeNotifier {
     speech = stt.SpeechToText();
     readFromFile();
   }
+  void switchColorMode(mode) {
+    colorMode = mode;
+    notifyListeners();
+  }
+
   void switchAlign() {
     if (textAlignIndx >= 2) {
       textAlignIndx = 0;
@@ -60,9 +66,9 @@ class VoiceRecognitionProvider extends ChangeNotifier {
       isListening = true;
       notifyListeners();
       bool available = await speech.initialize(onStatus: (val) {
-        print('onStatus: $val');
+        log('onStatus: $val');
       }, onError: (val) {
-        print('onError: $val');
+        log('onError: $val');
         isListening = false;
         controller.stop();
         notifyListeners();
@@ -130,7 +136,7 @@ class VoiceRecognitionProvider extends ChangeNotifier {
         _textList = [];
       }
     } catch (e) {
-      print('Failed to read the file: $e');
+      log('Failed to read the file: $e');
     }
     notifyListeners();
   }

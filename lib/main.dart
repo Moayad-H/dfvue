@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:device_preview/device_preview.dart';
 import 'package:dfvue/Providers/SignUpProvider.dart';
 import 'package:dfvue/Providers/logInProvider.dart';
@@ -13,7 +15,6 @@ import 'package:provider/provider.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 
 var globalMessengerKey = GlobalKey<ScaffoldMessengerState>();
 
@@ -25,7 +26,9 @@ void main() async {
   await appProvider.loadThemeFromPrefs();
   try {
     await ProfileProvider().loadUserProfile();
-  } catch (e) {}
+  } catch (e) {
+    log('Error in loading profile from main: $e');
+  }
 
   runApp(
     MultiProvider(
@@ -37,10 +40,11 @@ void main() async {
         ChangeNotifierProvider(create: (_) => ProfileProvider()),
         ChangeNotifierProvider(create: (_) => SettingsProvider()),
       ],
-      child: DevicePreview(
-        enabled: !kReleaseMode,
-        builder: (context) => MyApp(),
-      ),
+      child: const MyApp(),
+      // DevicePreview(
+      //   enabled: !kReleaseMode,
+      //   builder: (context) => const MyApp(),
+      // ),
     ),
   );
 }

@@ -1,15 +1,12 @@
 import 'package:dfvue/Providers/logInProvider.dart';
 import 'package:dfvue/localization/app_localization.dart';
-import 'package:dfvue/routes/app_routes.dart';
 import 'package:dfvue/theme/custom_button_style.dart';
 import 'package:dfvue/utils/image_constant.dart';
 import 'package:dfvue/utils/size_utils.dart';
 import 'package:dfvue/utils/validation_functions.dart';
 import 'package:dfvue/widgets/custom_elevated_button.dart';
 import 'package:dfvue/widgets/custom_text_form_field.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -79,7 +76,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Padding(

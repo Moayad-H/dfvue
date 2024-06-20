@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'en_us_translations.dart';
 import 'ar_translations.dart';

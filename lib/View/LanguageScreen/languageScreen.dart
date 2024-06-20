@@ -2,13 +2,9 @@ import 'package:dfvue/Providers/app_provider.dart';
 import 'package:dfvue/Providers/profileProvider.dart';
 import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/utils/size_utils.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:dfvue/app_export.dart';
-import 'package:dfvue/widgets/custom_drop_down.dart';
 import 'package:dfvue/widgets/custom_outlined_button.dart';
-import 'package:dfvue/widgets/custom_text_form_field.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -20,7 +16,6 @@ class LanguageScreen extends StatefulWidget {
 }
 
 class _LanguageScreenState extends State<LanguageScreen> {
-  @override
   String? selectedSpoken = "en"; // Default value for spoken language
   String? selectedSubtitle = 'en'; // Default value for subtitle language
 
@@ -84,7 +79,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                           DropdownButton<String>(
                             value: selectedSpoken,
                             hint: Text('msg_subtitle_language'.tr(context)),
-                            items: [
+                            items: const [
                               DropdownMenuItem(
                                 value: 'en',
                                 child: Text('English'),
@@ -99,7 +94,8 @@ class _LanguageScreenState extends State<LanguageScreen> {
                                 language.setSpokenLocale(Locale(newVal!));
                               });
                             },
-                            style: TextStyle(fontSize: 20, color: Colors.black),
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.black),
                           ),
                         ],
                       ),
@@ -110,7 +106,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text("msg_select_app_language".tr(context),
-                    style: TextStyle(fontSize: 20, color: Colors.black)),
+                    style: const TextStyle(fontSize: 20, color: Colors.black)),
               ),
               SizedBox(height: 5.v),
               Row(
@@ -130,8 +126,8 @@ class _LanguageScreenState extends State<LanguageScreen> {
                         children: [
                           DropdownButton<String>(
                             value: selectedSubtitle,
-                            hint: Text('Select Subtitle Language'),
-                            items: [
+                            hint: const Text('Select Subtitle Language'),
+                            items: const [
                               DropdownMenuItem(
                                 value: 'en',
                                 child: Text('English'),
@@ -146,7 +142,8 @@ class _LanguageScreenState extends State<LanguageScreen> {
                                 language.setLocale(Locale(newVal!));
                               });
                             },
-                            style: TextStyle(fontSize: 20, color: Colors.black),
+                            style: const TextStyle(
+                                fontSize: 20, color: Colors.black),
                           ),
                         ],
                       ),
@@ -164,7 +161,8 @@ class _LanguageScreenState extends State<LanguageScreen> {
                 ),
                 width: 200.h,
                 text: "lbl_continue".tr(context),
-                buttonTextStyle: TextStyle(color: Colors.white, fontSize: 20),
+                buttonTextStyle:
+                    const TextStyle(color: Colors.white, fontSize: 20),
                 onPressed: () {
                   GoRouter.of(context).push(AppRoutes.startScreen);
                 },
@@ -221,7 +219,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
               ],
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           Row(
@@ -229,8 +227,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                  "${"lbl_welcome_user".tr(context)} ${provider.userProfile?.name}" ??
-                      '',
+                  "${"lbl_welcome_user".tr(context)} ${provider.userProfile?.name}",
                   style: CustomTextStyles.titleLargeGray200e5),
             ],
           ),

@@ -1,7 +1,6 @@
 import 'package:dfvue/Providers/profileProvider.dart';
 import 'package:dfvue/View/InitialScreen/initialScreen.dart';
 import 'package:dfvue/View/LanguageScreen/languageScreen.dart';
-import 'package:dfvue/View/StartScreen/start_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

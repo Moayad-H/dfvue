@@ -1,10 +1,6 @@
 import 'dart:developer';
 import 'package:dfvue/localization/app_localization.dart';
 import 'package:dfvue/theme/app_style.dart';
-import 'package:dfvue/theme/theme_helper.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:flutter/material.dart';
 import 'package:dfvue/app_export.dart';
@@ -95,65 +91,5 @@ class InitialScreen extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  Widget _buildTopCenterLogo(BuildContext context) {
-    return Container(
-        alignment: Alignment.topCenter,
-        child: Column(children: [
-          Stack(
-            alignment: Alignment.center,
-            children: [
-              Container(
-                height: 360,
-                width: 360,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .errorContainer
-                          .withOpacity(0.2),
-                      spreadRadius: 2,
-                      blurRadius: 2,
-                    ),
-                  ],
-                ),
-              ),
-              Container(
-                height: 600,
-                width: 300,
-                decoration: BoxDecoration(
-                  color: Theme.of(context)
-                      .colorScheme
-                      .primaryContainer
-                      .withOpacity(0.2),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .primary
-                          .withOpacity(0.3),
-                      spreadRadius: 2,
-                      blurRadius: 2,
-                    ),
-                  ],
-                ),
-
-                // Text(
-                //   "DfVue", // Your text here
-                //   style: TextStyle(
-                //     color: Colors.amber,
-                //     fontSize: 24, // Adjust font size as needed
-                //     fontWeight: FontWeight.bold,
-                //   ),
-                // ),
-              ),
-            ],
-          ),
-        ]));
   }
 }
