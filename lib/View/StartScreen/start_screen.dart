@@ -80,7 +80,9 @@ class StartScreen extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.h),
                   child: GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      GoRouter.of(context).push(AppRoutes.wifiPage);
+                    },
                     child: Container(
                       width: mediaQueryData.size.width,
                       height: mediaQueryData.size.height * 0.125,

@@ -8,6 +8,7 @@ import 'package:dfvue/View/SavedConvo/transcriptionScreen.dart';
 import 'package:dfvue/View/SignUp/sign_up_screen.dart';
 import 'package:dfvue/View/StartScreen/start_screen.dart';
 import 'package:dfvue/View/VoiceRecognition/voice_recognition_screen.dart';
+import 'package:dfvue/View/WiFiPage/wifi_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -34,6 +35,7 @@ class AppRoutes {
   static const String startScreen = '/start_screen';
 
   static const String voiceRecognitionScreen = '/voice_recognition_screen';
+  static const String wifiPage = '/wifiPage';
 
   static const String voiceRecognitiontwoPage = '/voice_recognitiontwo_page';
 
@@ -127,6 +129,10 @@ class AppRoutes {
       //   builder: (BuildContext context, GoRouterState state) =>
       //   const MicrophoneScreen(),
       // ),
+      GoRoute(
+        path: wifiPage,
+        builder: (BuildContext context, GoRouterState state) => WiFiScreen(),
+      ),
       GoRoute(
         path: startScreen,
         builder: (BuildContext context, GoRouterState state) =>
